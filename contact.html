@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — ZSG Realty</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">ZSG Realty</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">Listings</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="section" style="max-width:640px;margin:0 auto">
+      <h2 class="section-title">Get in touch</h2>
+      <p style="color:#666;margin-bottom:32px">
+        Have a question about a property or want to schedule a viewing?
+        Fill out the form below and we'll get back to you within 24 hours.
+      </p>
+
+      <!-- General contact form (not tied to a specific property) -->
+      <div style="background:#fff;border:1px solid #e5e5e3;border-radius:12px;padding:28px">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="c-name">Full name *</label>
+            <input type="text" id="c-name" name="name" required placeholder="John Smith"/>
+          </div>
+          <div class="form-group">
+            <label for="c-email">Email address *</label>
+            <input type="email" id="c-email" name="email" required placeholder="john@email.com"/>
+          </div>
+          <div class="form-group">
+            <label for="c-phone">Phone number</label>
+            <input type="tel" id="c-phone" name="phone" placeholder="555-123-4567"/>
+          </div>
+          <div class="form-group">
+            <label for="c-message">Message *</label>
+            <textarea id="c-message" name="message" required
+              placeholder="Tell us what you're looking for..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark" style="width:100%">Send message</button>
+        </form>
+      </div>
+
+      <!-- Contact info -->
+      <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:#fff;border:1px solid #e5e5e3;border-radius:12px;padding:20px">
+          <p style="font-size:12px;color:#888;margin-bottom:6px">Email</p>
+          <p style="font-size:14px">info@zsgrealty.com</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e5e5e3;border-radius:12px;padding:20px">
+          <p style="font-size:12px;color:#888;margin-bottom:6px">Phone</p>
+          <p style="font-size:14px">+1 (888) 722-1486</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align:center;padding:32px;color:#888;font-size:13px;border-top:1px solid #e5e5e3">
+    © 2025 ZSG Realty · Built for Zack Solutions Group
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // General contact form — uses a placeholder property ID of "general"
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        propertyId:    '000000000000000000000000', // placeholder 24-char ID
+        propertyTitle: 'General Inquiry',
+        name:    form.name.value,
+        email:   form.email.value,
+        phone:   form.phone.value,
+        message: form.message.value,
+      };
+      const result = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(r => r.json());
+
+      if (result.success) {
+        form.reset();
+        const msg = document.createElement('div');
+        msg.className = 'alert alert-success';
+        msg.textContent = 'Message sent! We will get back to you soon.';
+        form.prepend(msg);
+        setTimeout(() => msg.remove(), 5000);
+      }
+    });
+  </script>
+</body>
+</html>

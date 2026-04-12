@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — ZSG Realty</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">ZSG Realty</a>
+      <ul class="nav-links">
+        <li><a href="index.html">← Back to site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar navigation -->
+    <aside class="admin-sidebar">
+      <ul>
+        <li><a href="#listings" class="active" onclick="showTab('listings')">All listings</a></li>
+        <li><a href="#add"      onclick="showTab('add')">Add new listing</a></li>
+        <li><a href="#inquiries" onclick="showTab('inquiries')">Inquiries</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content area -->
+    <div class="admin-main">
+
+      <!-- ── Tab 1: All Listings ── -->
+      <div id="tab-listings">
+        <div class="admin-header">
+          <h2 style="font-size:20px;font-weight:600">Manage listings</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-listings-body">
+            <tr><td colspan="6" class="loading">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── Tab 2: Add New Listing ── -->
+      <div id="tab-add" style="display:none">
+        <div class="admin-header">
+          <h2 style="font-size:20px;font-weight:600">Add new listing</h2>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e5e5e3;border-radius:12px;padding:28px;max-width:700px">
+          <form id="add-property-form">
+
+            <div class="form-group">
+              <label>Listing title *</label>
+              <input type="text" name="title" required placeholder="e.g. Spacious Corner Unit in Midtown"/>
+            </div>
+
+            <p style="font-size:13px;font-weight:500;margin-bottom:10px;color:#666">Address</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="form-group">
+                <label>Street *</label>
+                <input type="text" name="street" required placeholder="47 Park Ave"/>
+              </div>
+              <div class="form-group">
+                <label>City *</label>
+                <input type="text" name="city" required placeholder="Manhattan"/>
+              </div>
+              <div class="form-group">
+                <label>State *</label>
+                <input type="text" name="state" required placeholder="NY" maxlength="2"/>
+              </div>
+              <div class="form-group">
+                <label>ZIP code *</label>
+                <input type="text" name="zip" required placeholder="10016"/>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+              <div class="form-group">
+                <label>Price *</label>
+                <input type="number" name="price" required placeholder="1250000"/>
+              </div>
+              <div class="form-group">
+                <label>Type *</label>
+                <select name="type" required>
+                  <option value="sale">For Sale</option>
+                  <option value="rent">For Rent</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                  <option value="active">Active</option>
+                  <option value="sold">Sold</option>
+                  <option value="rented">Rented</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+              <div class="form-group">
+                <label>Bedrooms *</label>
+                <input type="number" name="bedrooms" required min="0" placeholder="3"/>
+              </div>
+              <div class="form-group">
+                <label>Bathrooms *</label>
+                <input type="number" name="bathrooms" required min="0" placeholder="2"/>
+              </div>
+              <div class="form-group">
+                <label>Sq Ft</label>
+                <input type="number" name="squareFeet" placeholder="1480"/>
+              </div>
+              <div class="form-group">
+                <label>Year Built</label>
+                <input type="number" name="yearBuilt" placeholder="2004"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Description *</label>
+              <textarea name="description" required style="height:100px"
+                placeholder="Describe the property..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Features (comma-separated)</label>
+              <input type="text" name="features" placeholder="Doorman, Rooftop, Gym, Parking"/>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:8px">
+              <button type="submit" class="btn btn-dark">Add listing</button>
+              <button type="reset"  class="btn btn-outline">Clear form</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ── Tab 3: Inquiries ── -->
+      <div id="tab-inquiries" style="display:none">
+        <div class="admin-header">
+          <h2 style="font-size:20px;font-weight:600">Inquiries</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Property</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="admin-inquiries-body">
+            <tr><td colspan="5" class="loading">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /admin-main -->
+  </div><!-- /admin-layout -->
+
+  <script src="js/app.js"></script>
+  <script>
+    // Simple tab switching for the admin sidebar
+    function showTab(name) {
+      ['listings', 'add', 'inquiries'].forEach(t => {
+        document.getElementById(`tab-${t}`).style.display = t === name ? 'block' : 'none';
+      });
+      document.querySelectorAll('.admin-sidebar a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${name}`);
+      });
+    }
+  </script>
+</body>
+</html>
