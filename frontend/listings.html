@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Listings — ZSG Realty</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">ZSG Realty</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html" class="active">Listings</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="section">
+      <h2 class="section-title">All listings</h2>
+
+      <!-- Filter Bar -->
+      <form class="filters" id="filter-form">
+        <div class="filter-group">
+          <label for="filter-type">Type</label>
+          <select id="filter-type">
+            <option value="">All</option>
+            <option value="sale">For Sale</option>
+            <option value="rent">For Rent</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-bedrooms">Bedrooms</label>
+          <select id="filter-bedrooms">
+            <option value="">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-min-price">Min price</label>
+          <input type="number" id="filter-min-price" placeholder="$0"/>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-max-price">Max price</label>
+          <input type="number" id="filter-max-price" placeholder="No limit"/>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <button type="submit" class="btn btn-dark">Search</button>
+          <button type="button" class="btn btn-outline" onclick="clearFilters()">Clear</button>
+        </div>
+      </form>
+
+      <p id="listing-count" style="font-size:13px;color:#888;margin-bottom:16px"></p>
+
+      <!-- Property cards filled by app.js -->
+      <div id="all-listings" class="cards-grid">
+        <p class="loading">Loading...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align:center;padding:32px;color:#888;font-size:13px;border-top:1px solid #e5e5e3">
+    © 2025 ZSG Realty · Built for Zack Solutions Group
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
