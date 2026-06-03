@@ -126,8 +126,14 @@ nav {
 .btn:hover { opacity: 0.85; }
 
 .btn-dark {
-  background: #1a1a1a;
+  background: #1a3a5c;
   color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.btn-dark:hover {
+  background: #2e75b6;
 }
 
 .btn-outline {
