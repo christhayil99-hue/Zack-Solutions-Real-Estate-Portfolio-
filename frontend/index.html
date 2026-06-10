@@ -11,25 +11,140 @@
   <!-- Navigation bar (same on every page) -->
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">Zack Real Estate</a>
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-icon">🏢</span>
+        <span class="nav-logo-text">
+          <span class="nav-logo-main">ZACK REAL ESTATE</span>
+          <span class="nav-logo-sub">WHERE LAND BECOMES LEGACY</span>
+        </span>
+      </a>
       <ul class="nav-links">
-        <li><a href="index.html"    class="active">Home</a></li>
-        <li><a href="listings.html">Listings</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="admin.html">Admin</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="listings.html">Properties</a></li>
+        <li><a href="listings.html">Communities</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="admin.html" class="nav-admin-btn">Admin</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Find your next property</h1>
-    <p>Browse curated real estate listings across New York and beyond</p>
-    <!-- Quick search — takes user to listings page with their query -->
-    <form class="search-bar" onsubmit="goToListings(event)">
-      <input type="text" id="hero-search" placeholder="Search by city, zip, or type..."/>
-      <button type="submit" class="btn btn-dark">Search</button>
-    </form>
+    <div class="hero-content">
+      <p class="hero-location">ZACK REAL ESTATE | NEW JERSEY</p>
+      <h1 class="hero-title">REAL ESTATE<br>EXCELLENCE</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">From Dream Homes to Landmark Deals,<br>We Make It Happen.</p>
+      <div class="hero-buttons">
+        <a href="listings.html" class="btn-hero-dark">BROWSE PROPERTIES</a>
+        <a href="contact.html" class="btn-hero-gold">GET IN TOUCH</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Property Categories Section -->
+  <section class="categories-section">
+    <div class="categories-grid">
+
+      <!-- Commercial Column -->
+      <div class="category-column">
+        <h3 class="category-title">— COMMERCIAL PROPERTIES —</h3>
+        <div class="category-cards">
+          <a href="listings.html" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80" alt="Office Spaces"/>
+            <div class="cat-card-label">
+              <p class="cat-card-name">OFFICE SPACES</p>
+              <p class="cat-card-sub">Prime locations for your business</p>
+            </div>
+          </a>
+          <a href="listings.html" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80" alt="Retail Spaces"/>
+            <div class="cat-card-label">
+              <p class="cat-card-name">RETAIL SPACES</p>
+              <p class="cat-card-sub">High visibility, high potential</p>
+            </div>
+          </a>
+          <a href="listings.html" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" alt="Industrial"/>
+            <div class="cat-card-label">
+              <p class="cat-card-name">INDUSTRIAL PROPERTIES</p>
+              <p class="cat-card-sub">Built for growth and efficiency</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Residential Column -->
+      <div class="category-column">
+        <h3 class="category-title">— RESIDENTIAL PROPERTIES —</h3>
+        <div class="category-cards">
+          <a href="listings.html" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80" alt="Luxury Homes"/>
+            <div class="cat-card-label">
+              <p class="cat-card-name">LUXURY HOMES</p>
+              <p class="cat-card-sub">Elevated living, exceptional style</p>
+            </div>
+          </a>
+          <a href="listings.html" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=80" alt="Modern Living"/>
+            <div class="cat-card-label">
+              <p class="cat-card-name">MODERN LIVING</p>
+              <p class="cat-card-sub">Comfort meets convenience</p>
+            </div>
+          </a>
+          <a href="listings.html" class="cat-card">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&q=80" alt="Family Communities"/>
+            <div class="cat-card-label">
+              <p class="cat-card-name">FAMILY COMMUNITIES</p>
+              <p class="cat-card-sub">Perfect places to call home</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- Trust Bar -->
+  <section class="trust-bar">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🤝</div>
+        <div class="trust-text">
+          <p class="trust-title">TRUSTED EXPERTS</p>
+          <p class="trust-sub">Years of experience<br>you can trust.</p>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">📍</div>
+        <div class="trust-text">
+          <p class="trust-title">LOCAL KNOWLEDGE</p>
+          <p class="trust-sub">Proudly serving<br>New Jersey.</p>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">📊</div>
+        <div class="trust-text">
+          <p class="trust-title">SMART INVESTMENTS</p>
+          <p class="trust-sub">Strategic investments.<br>Strong returns.</p>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">⭐</div>
+        <div class="trust-text">
+          <p class="trust-title">CLIENT-FOCUSED</p>
+          <p class="trust-sub">Your goals.<br>Our priority.</p>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item trust-contact">
+        <p class="trust-phone">📞 (908) 800-7777</p>
+        <p class="trust-email">✉️ info@zackrealestate.com</p>
+      </div>
+    </div>
   </section>
 
   <!-- Featured Listings Section -->
