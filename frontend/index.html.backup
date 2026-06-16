@@ -3,31 +3,27 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zack Real Estate — Where Land Becomes Legacy</title>
-  <link rel="stylesheet" href="css/style.css"/>
+  <title>Zack Real Estate — Find Your Next Property</title>
+  <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navigation bar (same on every page) -->
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">
-          <span class="logo-z">Z</span>
-          <span class="logo-building">🏛</span>
-        </div>
-        <div class="nav-logo-text">
+        <span class="nav-logo-icon">🏢</span>
+        <span class="nav-logo-text">
           <span class="nav-logo-main">ZACK REAL ESTATE</span>
-          <span class="nav-logo-sub">— WHERE LAND BECOMES LEGACY —</span>
-        </div>
+          <span class="nav-logo-sub">WHERE LAND BECOMES LEGACY</span>
+        </span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="about.html">ABOUT US</a></li>
-        <li><a href="listings.html">PROPERTIES</a></li>
-        <li><a href="listings.html">SERVICES</a></li>
-        <li><a href="listings.html">COMMUNITIES</a></li>
-        <li><a href="contact.html">CONTACT US</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="listings.html">Properties</a></li>
+        <li><a href="listings.html">Communities</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="admin.html" class="nav-admin-btn">Admin</a></li>
       </ul>
     </div>
   </nav>
@@ -65,7 +61,7 @@
             <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80" alt="Retail Spaces"/>
             <div class="cat-card-label">
               <p class="cat-card-name">RETAIL SPACES</p>
-              <p class="cat-card-sub">High visibility, High potential</p>
+              <p class="cat-card-sub">High visibility, high potential</p>
             </div>
           </a>
           <a href="listings.html" class="cat-card">
@@ -109,7 +105,7 @@
     </div>
   </section>
 
-  <!-- Trust Bar -->
+<!-- Trust Bar -->
   <section class="trust-bar">
     <div class="trust-grid">
       <div class="trust-item">
@@ -143,16 +139,41 @@
           <p class="trust-sub">Your goals.<br>Our priority.</p>
         </div>
       </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item trust-contact">
+        <p class="trust-phone">📞 (908) 800-7777</p>
+        <p class="trust-email">✉️ info@zackrealestate.com</p>
+      </div>
     </div>
   </section>
 
-  <!-- Footer Tagline -->
-  <footer class="footer-tagline">
-    <div class="footer-line"></div>
-    <p>— WHERE LAND BECOMES LEGACY —</p>
-    <div class="footer-line"></div>
+  <!-- Featured Listings Section -->
+  <main class="container">
+    <div class="section">
+      <h2 class="section-title">Featured listings</h2>
+      <!-- app.js fills this div with property cards -->
+      <div id="featured-listings" class="cards-grid">
+        <p class="loading">Loading...</p>
+      </div>
+      <div style="text-align:center; margin-top:32px">
+        <a href="listings.html" class="btn btn-outline">View all listings →</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="text-align:center; padding:32px; color:#444; font-size:14px; border-top:2px solid #1a3a5c; background:#f0f4f8;">
+    © 2025 Zack Real Estate · Built for Zack Solutions Group
   </footer>
 
   <script src="js/app.js"></script>
+  <script>
+    // Takes user to listings page with their search term
+    function goToListings(e) {
+      e.preventDefault();
+      const q = document.getElementById('hero-search').value;
+      window.location.href = 'listings.html';
+    }
+  </script>
 </body>
 </html>

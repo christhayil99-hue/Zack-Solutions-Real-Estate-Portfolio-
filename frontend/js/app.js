@@ -106,6 +106,7 @@ async function loadListings() {
   const minPrice = document.getElementById('filter-min-price')?.value || '';
   const maxPrice = document.getElementById('filter-max-price')?.value || '';
   const bedrooms = document.getElementById('filter-bedrooms')?.value  || '';
+  const category = document.getElementById('filter-category')?.value || '';
 
   // Build the query string to send to the API
   const params = new URLSearchParams();
@@ -113,6 +114,7 @@ async function loadListings() {
   if (minPrice) params.set('minPrice', minPrice);
   if (maxPrice) params.set('maxPrice', maxPrice);
   if (bedrooms) params.set('bedrooms', bedrooms);
+  if (category) params.set('category', category);
 
   const url = `/api/properties?${params.toString()}`;
   const result = await API.get(url);
@@ -138,6 +140,7 @@ function clearFilters() {
   document.getElementById('filter-min-price').value = '';
   document.getElementById('filter-max-price').value = '';
   document.getElementById('filter-bedrooms').value  = '';
+  document.getElementById('filter-category').value = '';
   loadListings();
 }
 
