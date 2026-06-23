@@ -934,3 +934,9 @@ tr:last-child td { border-bottom: none; }
     font-size: 34px;
   }
 }
+
+/* ── Prevent Horizontal Overflow on Mobile ────────── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

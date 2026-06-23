@@ -101,6 +101,15 @@ async function loadListings() {
 
   container.innerHTML = '<p class="loading">Loading listings...</p>';
 
+  // If the page was opened with ?category=office (e.g. clicked from the
+  // homepage category cards), pre-select that option in the dropdown
+  // before we read the filter values below.
+  const categoryFromUrl = getParam('category');
+  const categorySelect = document.getElementById('filter-category');
+  if (categoryFromUrl && categorySelect) {
+    categorySelect.value = categoryFromUrl;
+  }
+
   // Read filter values from the filter form
   const type     = document.getElementById('filter-type')?.value     || '';
   const minPrice = document.getElementById('filter-min-price')?.value || '';
