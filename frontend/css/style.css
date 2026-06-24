@@ -141,7 +141,7 @@ nav {
 .hero {
   background:
     linear-gradient(to right, rgba(13,33,64,0.88) 40%, rgba(13,33,64,0.25) 100%),
-    url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=90') center/cover no-repeat;
+    url('../images/hero-nyc.png') center/cover no-repeat;
   padding: 100px 80px;
   text-align: left;
   min-height: 460px;
@@ -839,8 +839,8 @@ tr:last-child td { border-bottom: none; }
   .hero-title { font-size: 38px; }
   .categories-grid { grid-template-columns: 1fr; gap: 24px; }
   .category-cards { grid-template-columns: repeat(3, 1fr); }
-  .trust-grid { flex-direction: column; gap: 20px; }
-  .trust-item { padding: 0; }
+  .trust-grid { flex-direction: column; gap: 20px; align-items: center; }
+  .trust-item { padding: 0; width: 100%; max-width: 320px; justify-content: flex-start; }
   .trust-divider { display: none; }
   .detail-layout { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
