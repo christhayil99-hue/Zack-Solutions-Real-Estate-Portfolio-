@@ -941,6 +941,15 @@ tr:last-child td { border-bottom: none; }
   .hero-title {
     font-size: 34px;
   }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-row {
+    grid-template-columns: 1fr !important;
+  }
+  .about-row img {
+    height: 220px !important;
+  }
 }
 
 /* ── Prevent Horizontal Overflow on Mobile ────────── */
