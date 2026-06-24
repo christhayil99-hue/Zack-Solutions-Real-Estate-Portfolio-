@@ -926,6 +926,9 @@ tr:last-child td { border-bottom: none; }
   .cards-grid {
     grid-template-columns: 1fr;
   }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
   .filters {
     flex-direction: column;
   }
