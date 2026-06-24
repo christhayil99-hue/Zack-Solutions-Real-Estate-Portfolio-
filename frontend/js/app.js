@@ -57,7 +57,7 @@ function showAlert(message, type = 'success') {
 function buildCard(p) {
   return `
     <div class="card" onclick="window.location.href='detail.html?id=${p._id}'">
-      <div class="card-img">🏢</div>
+      <div class="card-img">${p.image ? `<img src="${p.image}" alt="${p.title}">` : '🏢'}</div>
       <div class="card-body">
         <p class="card-price">${formatPrice(p.price, p.type)}</p>
         <p class="card-address">${p.address.street}, ${p.address.city}, ${p.address.state}</p>
@@ -178,7 +178,7 @@ async function loadDetail() {
 
   // Build the detail page HTML
   container.innerHTML = `
-    <div class="detail-photo">🏢</div>
+    <div class="detail-photo">${p.image ? `<img src="${p.image}" alt="${p.title}">` : '🏢'}</div>
     <div class="badge badge-${p.type}" style="display:inline-block;margin-bottom:12px">
       ${p.type === 'sale' ? 'For Sale' : 'For Rent'}
     </div>

@@ -590,7 +590,12 @@ nav {
   align-items: center;
   justify-content: center;
   font-size: 64px;
-  margin-bottom: 24px;
+}
+
+.detail-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .detail-price {
