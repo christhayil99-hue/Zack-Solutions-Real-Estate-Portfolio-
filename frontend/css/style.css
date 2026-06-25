@@ -926,9 +926,6 @@ tr:last-child td { border-bottom: none; }
   .cards-grid {
     grid-template-columns: 1fr;
   }
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
   .filters {
     flex-direction: column;
   }
@@ -942,7 +939,7 @@ tr:last-child td { border-bottom: none; }
     font-size: 34px;
   }
   .about-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   .about-row {
     grid-template-columns: 1fr !important;
@@ -950,6 +947,19 @@ tr:last-child td { border-bottom: none; }
   .about-row img {
     height: 220px !important;
   }
+  .admin-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Scrollable container for wide tables on small screens ── */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll table {
+  min-width: 640px;
 }
 
 /* ── Prevent Horizontal Overflow on Mobile ────────── */
