@@ -145,7 +145,6 @@ async function loadListings() {
 }
 
 function clearFilters() {
-  document.getElementById('filter-type').value     = '';
   document.getElementById('filter-min-price').value = '';
   document.getElementById('filter-max-price').value = '';
   document.getElementById('filter-bedrooms').value  = '';
