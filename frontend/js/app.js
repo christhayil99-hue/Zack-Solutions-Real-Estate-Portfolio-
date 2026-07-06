@@ -108,6 +108,8 @@ async function loadListings() {
   const categorySelect = document.getElementById('filter-category');
   if (categoryFromUrl && categorySelect) {
     categorySelect.value = categoryFromUrl;
+    // Clean the URL so this param doesn't override the dropdown on subsequent searches
+    history.replaceState(null, '', window.location.pathname);
   }
 
   // Read filter values from the filter form
