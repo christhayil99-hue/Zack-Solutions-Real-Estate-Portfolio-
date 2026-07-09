@@ -6,58 +6,178 @@
   <title>Admin Login — Zack Real Estate</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <style>
-    .login-wrapper {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
       min-height: 100vh;
       display: flex;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── Left panel: NYC skyline background ── */
+    .login-left {
+      flex: 1;
+      background:
+        linear-gradient(rgba(10, 28, 60, 0.72), rgba(10, 28, 60, 0.72)),
+        url('https://images.unsplash.com/photo-1485871800311-4b957d99f9e0?w=1200&q=80')
+        center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px;
+      color: #fff;
+    }
+
+    .login-left-badge {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      background: #f0f2f5;
-    }
-    .login-box {
-      background: #fff;
-      border: 1px solid #e5e5e3;
-      border-radius: 12px;
-      padding: 48px 40px;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-    .login-logo {
-      font-family: 'Times New Roman', Times, serif;
-      color: #0d2140;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 6px;
-    }
-    .login-sub {
-      color: #c9a84c;
-      font-size: 12px;
-      letter-spacing: 1px;
+      gap: 16px;
       margin-bottom: 32px;
     }
-    .login-box h2 {
+
+    .login-left-icon {
+      width: 56px;
+      height: 56px;
+      background: #c9a84c;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0d2140;
+      line-height: 1;
+    }
+
+    .login-left-icon span { font-size: 14px; }
+
+    .login-left-name {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .login-left-sub {
+      font-size: 11px;
+      color: #c9a84c;
+      letter-spacing: 2px;
+    }
+
+    .login-left h1 {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .login-left p {
+      font-size: 15px;
+      color: #c8d8e8;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    .login-left-divider {
+      width: 48px;
+      height: 3px;
+      background: #c9a84c;
+      margin-bottom: 20px;
+    }
+
+    /* ── Right panel: login form ── */
+    .login-right {
+      width: 420px;
+      min-width: 380px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 56px 48px;
+    }
+
+    .login-right h2 {
       font-family: 'Times New Roman', Times, serif;
       color: #0d2140;
-      font-size: 20px;
-      margin-bottom: 24px;
+      font-size: 26px;
+      margin-bottom: 6px;
     }
-    .login-box input {
+
+    .login-right .login-hint {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 32px;
+    }
+
+    .login-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* ── Password input wrapper ── */
+    .pw-wrapper {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .pw-wrapper input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 44px 13px 14px;
       font-size: 15px;
       border: 1px solid #ddd;
       border-radius: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
-    .login-box input:focus {
       outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .pw-wrapper input:focus {
       border-color: #0d2140;
     }
-    .login-box button {
+
+    /* Eye toggle button */
+    .pw-toggle {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #aaa;
+      font-size: 18px;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .pw-toggle:hover { color: #0d2140; }
+
+    /* Caps lock warning */
+    .caps-warning {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #b08000;
+      background: #fffbe6;
+      border: 1px solid #ffe58f;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin-bottom: 16px;
+    }
+
+    .caps-warning.visible { display: flex; }
+
+    /* Sign in button */
+    .login-btn {
       width: 100%;
-      padding: 13px;
+      padding: 14px;
       background: #0d2140;
       color: #fff;
       border: none;
@@ -66,31 +186,103 @@
       font-weight: 600;
       cursor: pointer;
       letter-spacing: 1px;
+      margin-bottom: 14px;
+      transition: background 0.2s;
     }
-    .login-box button:hover {
-      background: #1a3a5c;
-    }
+
+    .login-btn:hover { background: #1a3a5c; }
+
+    /* Error message */
     .login-error {
-      color: #c0392b;
-      font-size: 13px;
-      margin-top: 12px;
       display: none;
+      color: #c0392b;
+      background: #fdf0f0;
+      border: 1px solid #f5c6c6;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    /* Back link */
+    .back-link {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .back-link:hover { color: #0d2140; }
+
+    /* ── Mobile: stack panels vertically ── */
+    @media (max-width: 700px) {
+      body { flex-direction: column; }
+      .login-left {
+        min-height: 200px;
+        flex: none;
+        padding: 32px 24px;
+      }
+      .login-left h1 { font-size: 28px; }
+      .login-right {
+        width: 100%;
+        min-width: unset;
+        padding: 40px 24px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="login-wrapper">
-    <div class="login-box">
-      <div class="login-logo">ZACK REAL ESTATE</div>
-      <div class="login-sub">— ADMIN ACCESS —</div>
-      <h2>Enter your password</h2>
-
-      <input type="password" id="admin-password" placeholder="Password" autocomplete="current-password"/>
-      <button onclick="handleLogin()">Sign In</button>
-      <p class="login-error" id="login-error">Incorrect password. Please try again.</p>
-      <a href="/index.html" style="display:block;margin-top:20px;font-size:13px;color:#888;text-decoration:none;">← Back to website</a>
+  <!-- Left: branding panel -->
+  <div class="login-left">
+    <div class="login-left-badge">
+      <div class="login-left-icon">
+        Z<span>🏛</span>
+      </div>
+      <div>
+        <div class="login-left-name">ZACK REAL ESTATE</div>
+        <div class="login-left-sub">— WHERE LAND BECOMES LEGACY —</div>
+      </div>
     </div>
+    <h1>Real Estate<br>Excellence</h1>
+    <div class="login-left-divider"></div>
+    <p>From Dream Homes to Landmark Deals,<br>We Make It Happen.</p>
+  </div>
+
+  <!-- Right: login form -->
+  <div class="login-right">
+    <h2>Admin Sign In</h2>
+    <p class="login-hint">Enter your password to access the admin panel.</p>
+
+    <label class="login-label" for="admin-password">Password</label>
+
+    <div class="pw-wrapper">
+      <input
+        type="password"
+        id="admin-password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+      />
+      <button class="pw-toggle" onclick="togglePassword()" title="Show/hide password" tabindex="-1">
+        👁
+      </button>
+    </div>
+
+    <!-- Caps lock warning -->
+    <div class="caps-warning" id="caps-warning">
+      ⚠ Caps Lock is on
+    </div>
+
+    <!-- Error message -->
+    <div class="login-error" id="login-error">
+      Incorrect password. Please try again.
+    </div>
+
+    <button class="login-btn" onclick="handleLogin()">Sign In</button>
+
+    <a href="/index.html" class="back-link">← Back to website</a>
   </div>
 
   <script>
@@ -99,6 +291,26 @@
       window.location.href = '/admin.html';
     }
 
+    // ── Show/hide password toggle ──
+    function togglePassword() {
+      const input  = document.getElementById('admin-password');
+      const toggle = document.querySelector('.pw-toggle');
+      if (input.type === 'password') {
+        input.type  = 'text';
+        toggle.textContent = '🙈';
+      } else {
+        input.type  = 'password';
+        toggle.textContent = '👁';
+      }
+    }
+
+    // ── Caps lock detection ──
+    document.getElementById('admin-password').addEventListener('keyup', (e) => {
+      const capsOn = e.getModifierState && e.getModifierState('CapsLock');
+      document.getElementById('caps-warning').classList.toggle('visible', capsOn);
+    });
+
+    // ── Login handler ──
     async function handleLogin() {
       const password = document.getElementById('admin-password').value;
       const errorEl  = document.getElementById('login-error');
@@ -121,11 +333,12 @@
       }
     }
 
-    // Allow pressing Enter to submit
+    // ── Allow Enter key to submit ──
     document.getElementById('admin-password')
       .addEventListener('keydown', (e) => {
         if (e.key === 'Enter') handleLogin();
       });
   </script>
+
 </body>
 </html>
