@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login — Zack Real Estate</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <style>
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f2f5;
+    }
+    .login-box {
+      background: #fff;
+      border: 1px solid #e5e5e3;
+      border-radius: 12px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-logo {
+      font-family: 'Times New Roman', Times, serif;
+      color: #0d2140;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .login-sub {
+      color: #c9a84c;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+    }
+    .login-box h2 {
+      font-family: 'Times New Roman', Times, serif;
+      color: #0d2140;
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+    .login-box input:focus {
+      outline: none;
+      border-color: #0d2140;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 13px;
+      background: #0d2140;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+    .login-box button:hover {
+      background: #1a3a5c;
+    }
+    .login-error {
+      color: #c0392b;
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      <div class="login-logo">ZACK REAL ESTATE</div>
+      <div class="login-sub">— ADMIN ACCESS —</div>
+      <h2>Enter your password</h2>
+
+      <input type="password" id="admin-password" placeholder="Password" autocomplete="current-password"/>
+      <button onclick="handleLogin()">Sign In</button>
+      <p class="login-error" id="login-error">Incorrect password. Please try again.</p>
+      <a href="/index.html" style="display:block;margin-top:20px;font-size:13px;color:#888;text-decoration:none;">← Back to website</a>
+    </div>
+  </div>
+
+  <script>
+    // If already logged in, skip straight to admin
+    if (sessionStorage.getItem('adminToken') === 'zack-admin-verified') {
+      window.location.href = '/admin.html';
+    }
+
+    async function handleLogin() {
+      const password = document.getElementById('admin-password').value;
+      const errorEl  = document.getElementById('login-error');
+      errorEl.style.display = 'none';
+
+      if (!password) return;
+
+      const res  = await fetch('/api/auth/login', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ password })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        sessionStorage.setItem('adminToken', data.token);
+        window.location.href = '/admin.html';
+      } else {
+        errorEl.style.display = 'block';
+      }
+    }
+
+    // Allow pressing Enter to submit
+    document.getElementById('admin-password')
+      .addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleLogin();
+      });
+  </script>
+</body>
+</html>

@@ -33,6 +33,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.use('/api/properties', require('./routes/properties'));
 app.use('/api/inquiries',  require('./routes/inquiries'));
+app.use('/api/auth',       require('./routes/auth'));
 
 // ── Catch-all Route ─────────────────────────────────────────────────────────
 // For any other URL, serve the homepage

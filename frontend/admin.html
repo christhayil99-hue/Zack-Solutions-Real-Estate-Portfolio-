@@ -35,9 +35,10 @@
     <!-- Sidebar navigation -->
     <aside class="admin-sidebar">
       <ul>
-        <li><a href="#listings" class="active" onclick="showTab('listings')">All listings</a></li>
-        <li><a href="#add"      onclick="showTab('add')">Add new listing</a></li>
+        <li><a href="#listings"  onclick="showTab('listings')"  class="active">All listings</a></li>
+        <li><a href="#add"       onclick="showTab('add')">Add new listing</a></li>
         <li><a href="#inquiries" onclick="showTab('inquiries')">Inquiries</a></li>
+        <li><a href="#" onclick="adminLogout()" style="color:#c0392b;margin-top:24px;display:block">Log out</a></li>
       </ul>
     </aside>
 
@@ -189,7 +190,19 @@
     </div><!-- /admin-main -->
   </div><!-- /admin-layout -->
 
-  <script src="js/app.js"></script>
+  <script>
+    // Redirect to login if not authenticated
+    if (sessionStorage.getItem('adminToken') !== 'zack-admin-verified') {
+      window.location.href = '/login.html';
+    }
+  </script>
+  
+  <script>
+    function adminLogout() {
+      sessionStorage.removeItem('adminToken');
+      window.location.href = '/login.html';
+    }
+  </script>
   <script>
     // Simple tab switching for the admin sidebar
     function showTab(name) {
