@@ -301,7 +301,8 @@ async function loadAdminInquiries() {
     <tr>
       <td>${inq.name}</td>
       <td>${inq.email}</td>
-      <td>${inq.propertyTitle}</td>
+      <td>${inq.phone || '—'}</td>
+      <td>${inq.propertyTitle || 'General Inquiry'}</td>
       <td>
         <select onchange="updateInquiry('${inq._id}', this.value)" style="padding:4px;border-radius:6px;border:1px solid #ddd;font-size:12px">
           <option ${inq.status==='new'       ? 'selected' : ''} value="new">New</option>
