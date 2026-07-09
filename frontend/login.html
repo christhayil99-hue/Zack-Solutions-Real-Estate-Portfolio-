@@ -18,80 +18,96 @@
     .login-left {
       flex: 1;
       background:
-        linear-gradient(rgba(10, 28, 60, 0.72), rgba(10, 28, 60, 0.72)),
+        linear-gradient(rgba(10, 28, 60, 0.75), rgba(10, 28, 60, 0.75)),
         url('https://images.unsplash.com/photo-1485871800311-4b957d99f9e0?w=1200&q=80')
         center/cover no-repeat;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: center;
       padding: 48px;
       color: #fff;
+      text-align: center;
     }
 
     .login-left-badge {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
+      justify-content: center;
     }
 
     .login-left-icon {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       background: #c9a84c;
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       font-family: 'Times New Roman', Times, serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       color: #0d2140;
       line-height: 1;
     }
 
-    .login-left-icon span { font-size: 14px; }
+    .login-left-icon span { font-size: 15px; }
 
     .login-left-name {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: 2px;
       color: #fff;
+      text-align: left;
     }
 
     .login-left-sub {
       font-size: 11px;
       color: #c9a84c;
       letter-spacing: 2px;
+      text-align: left;
     }
 
     .login-left h1 {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 42px;
+      font-size: 52px;
       font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    .login-left p {
-      font-size: 15px;
-      color: #c8d8e8;
-      line-height: 1.6;
-      max-width: 400px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
     }
 
     .login-left-divider {
-      width: 48px;
+      width: 56px;
       height: 3px;
       background: #c9a84c;
-      margin-bottom: 20px;
+      margin: 0 auto 20px auto;
+    }
+
+    .login-left p {
+      font-size: 17px;
+      color: #d8e8f8;
+      line-height: 1.7;
+      max-width: 380px;
+    }
+
+    .login-left-tagline {
+      margin-top: 40px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #c9a84c;
+      text-transform: uppercase;
     }
 
     /* ── Right panel: login form ── */
     .login-right {
-      width: 420px;
+      width: 440px;
       min-width: 380px;
       background: #fff;
       display: flex;
@@ -103,45 +119,46 @@
     .login-right h2 {
       font-family: 'Times New Roman', Times, serif;
       color: #0d2140;
-      font-size: 26px;
-      margin-bottom: 6px;
+      font-size: 30px;
+      margin-bottom: 8px;
     }
 
     .login-right .login-hint {
-      color: #888;
-      font-size: 13px;
-      margin-bottom: 32px;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 36px;
+      line-height: 1.5;
     }
 
     .login-label {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      color: #444;
-      margin-bottom: 6px;
+      color: #333;
+      margin-bottom: 8px;
       display: block;
     }
 
     /* ── Password input wrapper ── */
     .pw-wrapper {
       position: relative;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .pw-wrapper input {
       width: 100%;
-      padding: 13px 44px 13px 14px;
+      padding: 14px 46px 14px 14px;
       font-size: 15px;
-      border: 1px solid #ddd;
+      border: 1.5px solid #ddd;
       border-radius: 8px;
       outline: none;
       transition: border-color 0.2s;
+      color: #222;
     }
 
     .pw-wrapper input:focus {
       border-color: #0d2140;
     }
 
-    /* Eye toggle button */
     .pw-toggle {
       position: absolute;
       right: 13px;
@@ -163,12 +180,12 @@
       display: none;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
-      color: #b08000;
+      font-size: 13px;
+      color: #7a5c00;
       background: #fffbe6;
       border: 1px solid #ffe58f;
       border-radius: 6px;
-      padding: 6px 10px;
+      padding: 8px 12px;
       margin-bottom: 16px;
     }
 
@@ -177,16 +194,16 @@
     /* Sign in button */
     .login-btn {
       width: 100%;
-      padding: 14px;
+      padding: 15px;
       background: #0d2140;
       color: #fff;
       border: none;
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       letter-spacing: 1px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       transition: background 0.2s;
     }
 
@@ -199,8 +216,8 @@
       background: #fdf0f0;
       border: 1px solid #f5c6c6;
       border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 13px;
+      padding: 10px 14px;
+      font-size: 14px;
       margin-bottom: 14px;
     }
 
@@ -208,10 +225,13 @@
     .back-link {
       display: block;
       text-align: center;
-      font-size: 13px;
-      color: #888;
+      font-size: 14px;
+      font-weight: 600;
+      color: #c9a84c;
       text-decoration: none;
       margin-top: 8px;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
     }
 
     .back-link:hover { color: #0d2140; }
@@ -220,11 +240,11 @@
     @media (max-width: 700px) {
       body { flex-direction: column; }
       .login-left {
-        min-height: 200px;
+        min-height: 240px;
         flex: none;
         padding: 32px 24px;
       }
-      .login-left h1 { font-size: 28px; }
+      .login-left h1 { font-size: 32px; }
       .login-right {
         width: 100%;
         min-width: unset;
@@ -246,9 +266,11 @@
         <div class="login-left-sub">— WHERE LAND BECOMES LEGACY —</div>
       </div>
     </div>
+
     <h1>Real Estate<br>Excellence</h1>
     <div class="login-left-divider"></div>
     <p>From Dream Homes to Landmark Deals,<br>We Make It Happen.</p>
+    <div class="login-left-tagline">Admin Portal</div>
   </div>
 
   <!-- Right: login form -->
@@ -265,7 +287,7 @@
         placeholder="Enter password"
         autocomplete="current-password"
       />
-      <button class="pw-toggle" onclick="togglePassword()" title="Show/hide password" tabindex="-1">
+      <button class="pw-toggle" id="pw-toggle-btn" title="Show/hide password" tabindex="-1">
         👁
       </button>
     </div>
@@ -292,22 +314,24 @@
     }
 
     // ── Show/hide password toggle ──
-    function togglePassword() {
-      const input  = document.getElementById('admin-password');
-      const toggle = document.querySelector('.pw-toggle');
-      if (input.type === 'password') {
-        input.type  = 'text';
-        toggle.textContent = '🙈';
-      } else {
-        input.type  = 'password';
-        toggle.textContent = '👁';
-      }
-    }
+    document.getElementById('pw-toggle-btn').addEventListener('click', function () {
+      const input = document.getElementById('admin-password');
+      const isHidden = input.type === 'password';
+      input.type = isHidden ? 'text' : 'password';
+      this.textContent = isHidden ? '🙈' : '👁';
+    });
 
-    // ── Caps lock detection ──
-    document.getElementById('admin-password').addEventListener('keyup', (e) => {
+    // ── Caps lock detection (only on real keyboard events, not autofill) ──
+    document.getElementById('admin-password').addEventListener('keydown', (e) => {
+      // e.key will be undefined or missing during autofill — skip those
+      if (!e.key) return;
       const capsOn = e.getModifierState && e.getModifierState('CapsLock');
       document.getElementById('caps-warning').classList.toggle('visible', capsOn);
+    });
+
+    // Also hide caps warning when field loses focus
+    document.getElementById('admin-password').addEventListener('blur', () => {
+      document.getElementById('caps-warning').classList.remove('visible');
     });
 
     // ── Login handler ──
