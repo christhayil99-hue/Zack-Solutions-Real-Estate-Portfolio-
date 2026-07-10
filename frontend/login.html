@@ -19,7 +19,7 @@
       flex: 1;
       background:
         linear-gradient(rgba(10, 28, 60, 0.75), rgba(10, 28, 60, 0.75)),
-        url('https://images.unsplash.com/photo-1485871800311-4b957d99f9e0?w=1200&q=80')
+        url('/images/login-bg.jpg')
         center/cover no-repeat;
       display: flex;
       flex-direction: column;
@@ -288,7 +288,17 @@
         autocomplete="current-password"
       />
       <button class="pw-toggle" id="pw-toggle-btn" title="Show/hide password" tabindex="-1">
-        👁
+        <!-- Eye open icon -->
+        <svg id="icon-eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <!-- Eye crossed (hidden) icon -->
+        <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+          <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+          <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
       </button>
     </div>
 
@@ -315,10 +325,11 @@
 
     // ── Show/hide password toggle ──
     document.getElementById('pw-toggle-btn').addEventListener('click', function () {
-      const input = document.getElementById('admin-password');
+      const input   = document.getElementById('admin-password');
       const isHidden = input.type === 'password';
       input.type = isHidden ? 'text' : 'password';
-      this.textContent = isHidden ? '🙈' : '👁';
+      document.getElementById('icon-eye-open').style.display = isHidden ? 'none'  : 'block';
+      document.getElementById('icon-eye-off').style.display  = isHidden ? 'block' : 'none';
     });
 
     // ── Caps lock detection (only on real keyboard events, not autofill) ──
