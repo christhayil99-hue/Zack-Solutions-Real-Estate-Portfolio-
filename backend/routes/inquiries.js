@@ -58,4 +58,22 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// ─────────────────────────────────────────────
+// DELETE /api/inquiries/:id
+// Deletes a single inquiry — called from the admin dashboard
+// ─────────────────────────────────────────────
+router.delete('/:id', async (req, res) => {
+  try {
+    const inquiry = await Inquiry.findByIdAndDelete(req.params.id);
+
+    if (!inquiry) {
+      return res.status(404).json({ success: false, message: 'Inquiry not found' });
+    }
+
+    res.json({ success: true, message: 'Inquiry deleted' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;

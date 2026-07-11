@@ -106,7 +106,7 @@
             <div class="admin-form-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
               <div class="form-group">
               <label>Category *</label>
-              <select id="new-category" required>
+              <select id="new-category" name="category" required>
                 <option value="">Select a category</option>
                 <option value="office">Office Space</option>
                 <option value="retail">Retail Space</option>
@@ -212,19 +212,7 @@
     }
   </script>
   <script src="js/app.js"></script>
-  <script>
-    function adminLogout() {
-      localStorage.removeItem('adminToken');
-      window.location.replace('/login.html');
-    }
-  </script>
   
-  <script>
-    function adminLogout() {
-      sessionStorage.removeItem('adminToken');
-      window.location.href = '/login.html';
-    }
-  </script>
   <script>
     // Simple tab switching for the admin sidebar
     function showTab(name) {
