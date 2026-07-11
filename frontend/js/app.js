@@ -311,6 +311,10 @@ async function loadAdminInquiries() {
         </select>
       </td>
       <td style="color:#888;font-size:12px">${new Date(inq.createdAt).toLocaleDateString()}</td>
+      <td>
+        <button class="btn btn-danger" style="padding:6px 12px;font-size:12px"
+          onclick="deleteInquiry('${inq._id}')">Delete</button>
+      </td>
     </tr>
   `).join('');
 }
@@ -332,6 +336,18 @@ async function updateInquiry(id, status) {
   if (!result.success) showAlert('Error updating inquiry.', 'error');
 }
 
+async function deleteInquiry(id) {
+  if (!confirm('Are you sure you want to delete this inquiry?')) return;
+
+  const result = await API.delete(`/api/inquiries/${id}`);
+  if (result.success) {
+    showAlert('Inquiry deleted.', 'success');
+    loadAdminInquiries();
+  } else {
+    showAlert('Error deleting inquiry.', 'error');
+  }
+}
+
 // Admin: submit the "Add Property" form
 async function submitAdminProperty(e) {
   e.preventDefault();
@@ -339,6 +355,7 @@ async function submitAdminProperty(e) {
 
   const data = {
     title:       form.title.value,
+    category:    form.category.value,
     address: {
       street: form.street.value,
       city:   form.city.value,

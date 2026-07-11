@@ -63,7 +63,7 @@
             </tr>
           </thead>
           <tbody id="admin-listings-body">
-            <tr><td colspan="6" class="loading">Loading...</td></tr>
+            <tr><td colspan="7" class="loading">Loading...</td></tr>
           </tbody>
         </table>
         </div>
@@ -105,7 +105,21 @@
 
             <div class="admin-form-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
               <div class="form-group">
-                <label>Price *</label>
+              <label>Category *</label>
+              <select id="new-category" required>
+                <option value="">Select a category</option>
+                <option value="office">Office Space</option>
+                <option value="retail">Retail Space</option>
+                <option value="industrial">Industrial</option>
+                <option value="home">Home Space</option>
+                <option value="luxury">Luxury Homes</option>
+                <option value="modern">Modern Living</option>
+                <option value="family">Family Communities</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Price *</label>
                 <input type="number" name="price" required placeholder="1250000"/>
               </div>
               <div class="form-group">
@@ -178,10 +192,11 @@
               <th>Property</th>
               <th>Status</th>
               <th>Date</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody id="admin-inquiries-body">
-            <tr><td colspan="6" class="loading">Loading...</td></tr>
+            <tr><td colspan="7" class="loading">Loading...</td></tr>
           </tbody>
         </table>
         </div>
