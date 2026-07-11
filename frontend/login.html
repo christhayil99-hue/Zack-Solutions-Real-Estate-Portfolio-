@@ -319,7 +319,7 @@
 
   <script>
     // If already logged in, skip straight to admin
-    if (sessionStorage.getItem('adminToken') === 'zack-admin-verified') {
+    if (localStorage.getItem('adminToken') === 'zack-admin-verified') {
       window.location.href = '/admin.html';
     }
 
@@ -361,7 +361,7 @@
       const data = await res.json();
 
       if (data.success) {
-        sessionStorage.setItem('adminToken', data.token);
+        localStorage.setItem('adminToken', data.token);
         window.location.href = '/admin.html';
       } else {
         errorEl.style.display = 'block';
