@@ -1,6 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const express  = require('express');
+const router   = express.Router();
+const Property = require('../models/Property');
 
+// ── Hardcoded fallback data (used only if MongoDB is unavailable) ──────────
 const sampleProperties = [
   { _id: '1', title: 'Luxury Midtown Apartment', category: 'home', image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80', address: { street: '47 Park Ave', city: 'Manhattan', state: 'NY', zip: '10016' }, price: 1250000, type: 'sale', status: 'active', bedrooms: 3, bathrooms: 2, squareFeet: 1480, yearBuilt: 2004, description: 'Stunning corner unit in the heart of Midtown. Floor-to-ceiling windows with breathtaking city views. Steps from Grand Central.', features: ['Doorman', 'Rooftop', 'Gym', 'Parking'] },
   { _id: '2', title: 'Brooklyn Heights Brownstone', category: 'home', image: 'https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=800&q=80', address: { street: '12 Elm St', city: 'Brooklyn', state: 'NY', zip: '11201' }, price: 4200, type: 'rent', status: 'active', bedrooms: 2, bathrooms: 1, squareFeet: 950, yearBuilt: 1998, description: 'Charming renovated brownstone in sought-after Brooklyn Heights. Exposed brick, hardwood floors, and private garden.', features: ['Garden', 'Laundry', 'Pet Friendly'] },
@@ -22,32 +24,123 @@ const sampleProperties = [
   { _id: '18', title: 'Edgewater Strip Mall Unit', category: 'retail', image: 'https://images.unsplash.com/photo-1555529771-7888783a18d3?w=800&q=80', address: { street: '120 River Rd', city: 'Edgewater', state: 'NJ', zip: '07020' }, price: 685000, type: 'sale', status: 'active', bedrooms: 0, bathrooms: 1, squareFeet: 1800, yearBuilt: 2003, description: 'End-cap retail unit in busy shopping plaza with ample parking and excellent road visibility.', features: ['Ample Parking', 'Road Visibility', 'End-Cap Unit'] }
 ];
 
-router.get('/', (req, res) => {
-  let results = sampleProperties.filter(p => p.status === 'active');
-  if (req.query.type) results = results.filter(p => p.type === req.query.type);
-  if (req.query.bedrooms) results = results.filter(p => p.bedrooms >= Number(req.query.bedrooms));
-  if (req.query.minPrice) results = results.filter(p => p.price >= Number(req.query.minPrice));
-  if (req.query.maxPrice) results = results.filter(p => p.price <= Number(req.query.maxPrice));
-  if (req.query.category) results = results.filter(p => p.category === req.query.category);
-  res.json({ success: true, count: results.length, data: results });
+// Helper: check if MongoDB is connected
+const mongoose = require('mongoose');
+function isDbConnected() {
+  return mongoose.connection.readyState === 1;
+}
+
+// ── GET /api/properties ───────────────────────────────────────────────────────
+// Returns all active properties, with optional filters
+router.get('/', async (req, res) => {
+  try {
+    let results;
+
+    if (isDbConnected()) {
+      // Build MongoDB query from filters
+      const query = { status: 'active' };
+      if (req.query.type)     query.type     = req.query.type;
+      if (req.query.category) query.category = req.query.category;
+      if (req.query.bedrooms) query.bedrooms = { $gte: Number(req.query.bedrooms) };
+      if (req.query.minPrice) query.price    = { ...query.price, $gte: Number(req.query.minPrice) };
+      if (req.query.maxPrice) query.price    = { ...query.price, $lte: Number(req.query.maxPrice) };
+
+      results = await Property.find(query).sort({ createdAt: -1 });
+    } else {
+      // Fallback to hardcoded sample data
+      results = sampleProperties.filter(p => p.status === 'active');
+      if (req.query.type)     results = results.filter(p => p.type === req.query.type);
+      if (req.query.category) results = results.filter(p => p.category === req.query.category);
+      if (req.query.bedrooms) results = results.filter(p => p.bedrooms >= Number(req.query.bedrooms));
+      if (req.query.minPrice) results = results.filter(p => p.price >= Number(req.query.minPrice));
+      if (req.query.maxPrice) results = results.filter(p => p.price <= Number(req.query.maxPrice));
+    }
+
+    res.json({ success: true, count: results.length, data: results });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 });
 
-router.get('/:id', (req, res) => {
-  const property = sampleProperties.find(p => p._id === req.params.id);
-  if (!property) return res.status(404).json({ success: false, message: 'Property not found' });
-  res.json({ success: true, data: property });
+// ── GET /api/properties/:id ───────────────────────────────────────────────────
+// Returns a single property by ID
+router.get('/:id', async (req, res) => {
+  try {
+    let property;
+
+    if (isDbConnected()) {
+      property = await Property.findById(req.params.id);
+    } else {
+      property = sampleProperties.find(p => p._id === req.params.id);
+    }
+
+    if (!property) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
+    }
+
+    res.json({ success: true, data: property });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 });
 
-router.post('/', (req, res) => {
-  res.json({ success: true, data: { ...req.body, _id: Date.now().toString() } });
+// ── POST /api/properties ──────────────────────────────────────────────────────
+// Creates a new property — called from the admin "Add new listing" form
+router.post('/', async (req, res) => {
+  try {
+    if (!isDbConnected()) {
+      return res.status(503).json({ success: false, message: 'Database not connected. Cannot save new listings.' });
+    }
+
+    const property = await Property.create(req.body);
+    res.status(201).json({ success: true, data: property });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
 });
 
-router.put('/:id', (req, res) => {
-  res.json({ success: true, data: req.body });
+// ── PUT /api/properties/:id ───────────────────────────────────────────────────
+// Updates an existing property — called from the admin "Edit" button
+router.put('/:id', async (req, res) => {
+  try {
+    if (!isDbConnected()) {
+      return res.status(503).json({ success: false, message: 'Database not connected.' });
+    }
+
+    const property = await Property.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!property) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
+    }
+
+    res.json({ success: true, data: property });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
 });
 
-router.delete('/:id', (req, res) => {
-  res.json({ success: true, message: 'Deleted' });
+// ── DELETE /api/properties/:id ────────────────────────────────────────────────
+// Deletes a property — called from the admin "Delete" button
+router.delete('/:id', async (req, res) => {
+  try {
+    if (!isDbConnected()) {
+      return res.status(503).json({ success: false, message: 'Database not connected.' });
+    }
+
+    const property = await Property.findByIdAndDelete(req.params.id);
+
+    if (!property) {
+      return res.status(404).json({ success: false, message: 'Property not found' });
+    }
+
+    res.json({ success: true, message: 'Property deleted' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 });
 
 module.exports = router;

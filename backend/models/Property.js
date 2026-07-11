@@ -48,9 +48,15 @@ const propertySchema = new mongoose.Schema(
       required: [true, 'Please add a description'],
     },
 
-    imageUrl: {
+    image: {
       type: String,
-      default: '/images/placeholder.jpg',
+      default: '',
+    },
+
+    category: {
+      type: String,
+      enum: ['office', 'retail', 'industrial', 'home', 'luxury', 'modern', 'family'],
+      required: [true, 'Please select a category'],
     },
 
     // Array of strings e.g. ["Doorman", "Gym", "Rooftop"]
