@@ -214,6 +214,13 @@
   <script src="js/app.js"></script>
   
   <script>
+    function adminLogout() {
+      localStorage.removeItem('adminToken');
+      window.location.replace('/login.html');
+    }
+  </script>
+
+  <script>
     // Simple tab switching for the admin sidebar
     function showTab(name) {
       ['listings', 'add', 'inquiries'].forEach(t => {
