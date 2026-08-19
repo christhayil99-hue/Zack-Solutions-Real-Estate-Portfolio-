@@ -977,3 +977,16 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+.nav-logo-sub {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 9px;
+  color: #c9a84c;
+  letter-spacing: 2.5px;
+}
+
+.nav-logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+}
