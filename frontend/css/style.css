@@ -500,6 +500,149 @@ nav {
   flex-wrap: wrap;
 }
 
+/* ── Card image overlays (badge + favorite) ───────── */
+.card-img { position: relative; }
+
+.card-badge-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.fav-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.9);
+  color: #999;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-btn.active { color: #c0392b; }
+
+.card-view-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #c9a84c;
+}
+
+.card-view-link:hover { color: #0d2140; }
+
+/* ── More Filters panel ───────────────────────────── */
+.more-filters-toggle {
+  background: none;
+  border: none;
+  color: #0d2140;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: underline;
+}
+
+.more-filters {
+  display: none;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #e5e5e3;
+  width: 100%;
+}
+
+.more-filters.open { display: flex; }
+
+/* ── Results toolbar (count, sort, view toggle) ───── */
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+}
+
+.view-toggle { display: flex; gap: 6px; }
+
+.view-toggle button {
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: #0d2140;
+  color: #fff;
+  border-color: #0d2140;
+}
+
+/* ── Pagination ────────────────────────────────────── */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background: #0d2140;
+  color: #fff;
+  border-color: #0d2140;
+}
+
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Map view placeholder (real map not built yet) ── */
+.map-placeholder {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+  background: #eef2f6;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  color: #888;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  text-align: center;
+  padding: 24px;
+}
+
 /* ── Badges ───────────────────────────────────────── */
 .badge {
   font-family: 'Times New Roman', Times, serif;

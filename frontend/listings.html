@@ -25,60 +25,119 @@
 
 <div style="background: linear-gradient(135deg, #1a3a5c 0%, #2e75b6 100%); padding: 40px 24px; text-align: center; margin-bottom: 0;">
   <h1 style="color: #ffffff; font-size: 32px; font-weight: 700; margin: 0 0 8px 0;">Properties</h1>
-  <p style="color: #c8d8e8; font-size: 16px; margin: 0;">Browse and filter all available properties</p>
+  <p style="color: #c8d8e8; font-size: 16px; margin: 0;">Explore residential, commercial, and investment properties</p>
 </div>
 
 <main class="container">
   <div class="section">
       <!-- Filter Bar -->
-      <form class="filters" id="filter-form">
-        <div class="filter-group">
-          <label for="filter-category">Category</label>
-          <select id="filter-category">
-            <option value="">All</option>
-            <option value="office">Office Space</option>
-            <option value="retail">Retail Space</option>
-            <option value="industrial">Industrial</option>
-            <option value="home">Home Space</option>
-            <option value="luxury">Luxury Homes</option>
-            <option value="modern">Modern Living</option>
-            <option value="family">Family Communities</option>
-          </select>
+      <form class="filters" id="filter-form" style="flex-direction:column;align-items:stretch">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+          <div class="filter-group">
+            <label for="filter-location">Location</label>
+            <input type="text" id="filter-location" placeholder="City, ZIP code or Neighborhood"/>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-category">Property Type</label>
+            <select id="filter-category">
+              <option value="">All Properties</option>
+              <option value="office">Office Space</option>
+              <option value="retail">Retail Space</option>
+              <option value="industrial">Industrial</option>
+              <option value="home">Home Space</option>
+              <option value="luxury">Luxury Homes</option>
+              <option value="modern">Modern Living</option>
+              <option value="family">Family Communities</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-type">Status</label>
+            <select id="filter-type">
+              <option value="">All Statuses</option>
+              <option value="sale">For Sale</option>
+              <option value="rent">For Rent</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-min-price">Min price</label>
+            <input type="number" id="filter-min-price" placeholder="$0"/>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-max-price">Max price</label>
+            <input type="number" id="filter-max-price" placeholder="No limit"/>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:flex-end">
+            <button type="submit" class="btn btn-dark">Search</button>
+            <button type="button" class="btn btn-outline" onclick="clearFilters()">Clear</button>
+          </div>
         </div>
 
-        <div class="filter-group">
-          <label for="filter-bedrooms">Bedrooms</label>
-          <select id="filter-bedrooms">
-            <option value="">Any</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
-          </select>
-        </div>
+        <div>
+          <button type="button" class="more-filters-toggle" id="more-filters-btn" onclick="toggleMoreFilters()">⌄ More Filters</button>
+          <div class="more-filters" id="more-filters">
+            <div class="filter-group">
+              <label for="filter-bedrooms">Bedrooms</label>
+              <select id="filter-bedrooms">
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
 
-        <div class="filter-group">
-          <label for="filter-min-price">Min price</label>
-          <input type="number" id="filter-min-price" placeholder="$0"/>
-        </div>
+            <div class="filter-group">
+              <label for="filter-bathrooms">Bathrooms</label>
+              <select id="filter-bathrooms">
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+              </select>
+            </div>
 
-        <div class="filter-group">
-          <label for="filter-max-price">Max price</label>
-          <input type="number" id="filter-max-price" placeholder="No limit"/>
-        </div>
-
-        <div style="display:flex;gap:8px;align-items:flex-end">
-          <button type="submit" class="btn btn-dark">Search</button>
-          <button type="button" class="btn btn-outline" onclick="clearFilters()">Clear</button>
+            <div class="filter-group">
+              <label for="filter-min-sqft">Min Sq Ft</label>
+              <input type="number" id="filter-min-sqft" placeholder="Any"/>
+            </div>
+          </div>
         </div>
       </form>
 
-      <p id="listing-count" style="font-size:13px;color:#888;margin-bottom:16px"></p>
+      <!-- Results toolbar: count, sort, view toggle -->
+      <div class="results-toolbar">
+        <p id="listing-count" style="font-size:13px;color:#888;margin:0"></p>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <select id="sort-by" class="sort-select" onchange="loadListings()">
+            <option value="featured">Sort By: Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest</option>
+          </select>
+          <div class="view-toggle">
+            <button type="button" id="view-list-btn" class="active" onclick="setView('list')">☰ List View</button>
+            <button type="button" id="view-map-btn" onclick="setView('map')">🗺 Map View</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Property cards filled by app.js -->
       <div id="all-listings" class="cards-grid">
         <p class="loading">Loading...</p>
       </div>
+
+      <!-- Map view placeholder (real map isn't built yet) -->
+      <div id="map-placeholder" class="map-placeholder">
+        Map view is coming soon — this will show all properties plotted on an interactive map.
+      </div>
+
+      <!-- Pagination -->
+      <div id="pagination" class="pagination"></div>
     </div>
   </main>
 

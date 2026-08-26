@@ -56,17 +56,21 @@ function showAlert(message, type = 'success') {
 // Build one property card HTML string
 function buildCard(p) {
   return `
-    <div class="card" onclick="window.location.href='detail.html?id=${p._id}'">
-      <div class="card-img">${p.image ? `<img src="${p.image}" alt="${p.title}">` : '🏢'}</div>
-      <div class="card-body">
+    <div class="card">
+      <div class="card-img" onclick="window.location.href='detail.html?id=${p._id}'">
+        ${p.image ? `<img src="${p.image}" alt="${p.title}">` : '🏢'}
+        <span class="badge badge-${p.type} card-badge-overlay">${p.type === 'sale' ? 'For Sale' : 'For Rent'}</span>
+        <button type="button" class="fav-btn" title="Save" onclick="event.stopPropagation(); this.classList.toggle('active')">♥</button>
+      </div>
+      <div class="card-body" onclick="window.location.href='detail.html?id=${p._id}'">
         <p class="card-price">${formatPrice(p.price, p.type)}</p>
         <p class="card-address">${p.address.street}, ${p.address.city}, ${p.address.state}</p>
         <div class="card-tags">
-          <span class="badge badge-${p.type}">${p.type === 'sale' ? 'For Sale' : 'For Rent'}</span>
           <span class="tag">${p.bedrooms} bd</span>
           <span class="tag">${p.bathrooms} ba</span>
           ${p.squareFeet ? `<span class="tag">${p.squareFeet.toLocaleString()} sqft</span>` : ''}
         </div>
+        <a class="card-view-link" href="detail.html?id=${p._id}" onclick="event.stopPropagation()">View Details →</a>
       </div>
     </div>`;
 }
@@ -95,11 +99,17 @@ async function loadFeatured() {
 // ── PAGE: Listings Page (listings.html) ───────────────────────────────────────
 // Loads all listings and handles search filtering
 
+const PAGE_SIZE = 8;
+let currentListings = [];
+let currentPage = 1;
+
 async function loadListings() {
   const container = document.getElementById('all-listings');
   if (!container) return; // only run on listings page
 
   container.innerHTML = '<p class="loading">Loading listings...</p>';
+  const pager = document.getElementById('pagination');
+  if (pager) pager.innerHTML = '';
 
   // If the page was opened with ?category=office (e.g. clicked from the
   // homepage category cards), pre-select that option in the dropdown
@@ -113,11 +123,18 @@ async function loadListings() {
   }
 
   // Read filter values from the filter form
-  const type     = document.getElementById('filter-type')?.value     || '';
-  const minPrice = document.getElementById('filter-min-price')?.value || '';
-  const maxPrice = document.getElementById('filter-max-price')?.value || '';
-  const bedrooms = document.getElementById('filter-bedrooms')?.value  || '';
-  const category = document.getElementById('filter-category')?.value || '';
+  const type      = document.getElementById('filter-type')?.value       || '';
+  const minPrice  = document.getElementById('filter-min-price')?.value  || '';
+  const maxPrice  = document.getElementById('filter-max-price')?.value  || '';
+  const bedrooms  = document.getElementById('filter-bedrooms')?.value   || '';
+  const category  = document.getElementById('filter-category')?.value  || '';
+
+  // These three filters, plus sorting, aren't sent to the server yet —
+  // they're applied below, in the browser, after the data comes back.
+  const location  = document.getElementById('filter-location')?.value.trim().toLowerCase() || '';
+  const bathrooms = document.getElementById('filter-bathrooms')?.value  || '';
+  const minSqft   = document.getElementById('filter-min-sqft')?.value   || '';
+  const sortBy    = document.getElementById('sort-by')?.value           || 'featured';
 
   // Build the query string to send to the API
   const params = new URLSearchParams();
@@ -139,18 +156,119 @@ async function loadListings() {
     return;
   }
 
-  // Update the count
-  const count = document.getElementById('listing-count');
-  if (count) count.textContent = `${result.data.length} listings found`;
+  // Apply the location / bathrooms / min sq ft filters ourselves,
+  // since the server doesn't know about these yet
+  let listings = result.data;
 
-  container.innerHTML = result.data.map(buildCard).join('');
+  if (location) {
+    listings = listings.filter(p =>
+      `${p.address.street} ${p.address.city} ${p.address.state} ${p.address.zip}`
+        .toLowerCase()
+        .includes(location)
+    );
+  }
+
+  if (bathrooms) {
+    listings = listings.filter(p => p.bathrooms >= Number(bathrooms));
+  }
+
+  if (minSqft) {
+    listings = listings.filter(p => (p.squareFeet || 0) >= Number(minSqft));
+  }
+
+  // Sort (also done here in the browser)
+  if (sortBy === 'price-low')  listings = [...listings].sort((a, b) => a.price - b.price);
+  if (sortBy === 'price-high') listings = [...listings].sort((a, b) => b.price - a.price);
+  if (sortBy === 'newest')     listings = [...listings].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  if (listings.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <p>No listings match your search.</p>
+        <button class="btn btn-outline" onclick="clearFilters()">Clear filters</button>
+      </div>`;
+    return;
+  }
+
+  const count = document.getElementById('listing-count');
+  if (count) count.textContent = `${listings.length} PROPERTIES FOUND`;
+
+  renderPage(listings, 1);
+}
+
+// Show one page of results and build the pagination buttons below them
+function renderPage(listings, page) {
+  currentListings = listings;
+  currentPage = page;
+
+  const container = document.getElementById('all-listings');
+  const start = (page - 1) * PAGE_SIZE;
+  const pageItems = listings.slice(start, start + PAGE_SIZE);
+
+  container.innerHTML = pageItems.map(buildCard).join('');
+  renderPagination(listings.length, page);
+}
+
+function renderPagination(totalItems, page) {
+  const pager = document.getElementById('pagination');
+  if (!pager) return;
+
+  const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+  if (totalPages <= 1) { pager.innerHTML = ''; return; }
+
+  let buttons = '';
+  for (let i = 1; i <= totalPages; i++) {
+    buttons += `<button type="button" class="page-btn ${i === page ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+  }
+  buttons += `<button type="button" class="page-btn" ${page === totalPages ? 'disabled' : ''} onclick="goToPage(${page + 1})">Next →</button>`;
+
+  pager.innerHTML = buttons;
+}
+
+function goToPage(page) {
+  renderPage(currentListings, page);
+  document.getElementById('all-listings').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Toggle the "More Filters" panel (Bedrooms, Bathrooms, Min Sq Ft)
+function toggleMoreFilters() {
+  const panel = document.getElementById('more-filters');
+  const btn   = document.getElementById('more-filters-btn');
+  const isOpen = panel.classList.toggle('open');
+  btn.textContent = isOpen ? '⌃ Fewer Filters' : '⌄ More Filters';
+}
+
+// Switch between List View and Map View
+// (Map View is a placeholder for now — no real map is wired up yet)
+function setView(view) {
+  const listBtn = document.getElementById('view-list-btn');
+  const mapBtn  = document.getElementById('view-map-btn');
+  const grid    = document.getElementById('all-listings');
+  const mapPane = document.getElementById('map-placeholder');
+
+  if (view === 'map') {
+    grid.style.display = 'none';
+    mapPane.style.display = 'flex';
+    listBtn.classList.remove('active');
+    mapBtn.classList.add('active');
+  } else {
+    grid.style.display = 'grid';
+    mapPane.style.display = 'none';
+    mapBtn.classList.remove('active');
+    listBtn.classList.add('active');
+  }
 }
 
 function clearFilters() {
-  document.getElementById('filter-min-price').value = '';
-  document.getElementById('filter-max-price').value = '';
-  document.getElementById('filter-bedrooms').value  = '';
-  document.getElementById('filter-category').value = '';
+  document.getElementById('filter-min-price').value  = '';
+  document.getElementById('filter-max-price').value  = '';
+  document.getElementById('filter-bedrooms').value   = '';
+  document.getElementById('filter-category').value   = '';
+  document.getElementById('filter-type').value       = '';
+  document.getElementById('filter-location').value   = '';
+  document.getElementById('filter-bathrooms').value  = '';
+  document.getElementById('filter-min-sqft').value   = '';
+  document.getElementById('sort-by').value           = 'featured';
   loadListings();
 }
 
