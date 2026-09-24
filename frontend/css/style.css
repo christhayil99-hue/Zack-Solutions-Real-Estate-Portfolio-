@@ -282,6 +282,26 @@ nav {
   filter: brightness(0.9);
 }
 
+.about-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.about-card:hover {
+  box-shadow: 0 10px 28px rgba(13,33,64,0.18);
+  transform: translateY(-3px);
+}
+
+.about-card img {
+  transition: transform 0.35s ease;
+}
+
+.about-card:hover img {
+  transform: scale(1.05);
+}
+
 .cat-card-label {
   background: rgba(13,33,64,0.88);
   padding: 8px 6px;
