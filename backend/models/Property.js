@@ -55,7 +55,11 @@ const propertySchema = new mongoose.Schema(
 
     category: {
       type: String,
-      enum: ['office', 'retail', 'industrial', 'home', 'luxury', 'modern', 'family'],
+      enum: [
+        'office', 'retail', 'industrial', 'home', 'luxury', 'modern', 'family',
+        'real-estate', 'vacant-land', 'construction-design',
+        'commercial-investment', 'income-properties', 'multifamily', 'development',
+      ],
       required: [true, 'Please select a category'],
     },
 
