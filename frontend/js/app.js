@@ -502,6 +502,158 @@ async function submitAdminProperty(e) {
   }
 }
 
+// ── PAGE: About Us (about.html) — category detail modal ───────────────────────
+
+const ABOUT_DETAILS = {
+  'real-estate': {
+    title: 'Real Estate',
+    subtitle: 'Commercial Real Estate | Investment Real Estate',
+    blocks: [
+      { heading: 'Commercial Real Estate', text: `Explore properties designed for business operations, including office buildings, retail spaces, restaurants, mixed-use properties, and other commercial assets. We help clients evaluate acquisition, leasing, disposition, and investment opportunities based on location, property characteristics, and business objectives. U.S. commercial real estate commonly includes sales, leasing, property management, investment, and development activities.` },
+      { heading: 'Investment Real Estate', text: `Identify income-producing and value-add real estate opportunities with a focus on rental income, property fundamentals, location, operating performance, and long-term potential.` },
+      { heading: 'What We Provide', list: [
+        'Property identification and acquisition support',
+        'Investment opportunity analysis',
+        'Market and location research',
+        'Property comparison',
+        'Acquisition and disposition support',
+        'Commercial property strategy',
+        'Development opportunity evaluation',
+      ]},
+    ]
+  },
+  'vacant-land': {
+    title: 'Vacant Land',
+    subtitle: 'Land Acquisition | Investment | Development',
+    blocks: [
+      { heading: 'Land Acquisition', text: `Identify vacant or underutilized land suitable for commercial, multifamily, mixed-use, or other development concepts. Each opportunity can be evaluated based on location, access, zoning, permitted use, utilities, site conditions, and development potential.` },
+      { heading: 'Land Investment', text: `Vacant land can be considered as a longer-term investment when the surrounding market, planned infrastructure, zoning environment, and potential future use support the investment strategy.` },
+      { heading: 'Land Development', text: `Evaluate development concepts from initial site selection through feasibility, planning, approvals, construction, and eventual sale or operation.` },
+      { heading: 'What We Review', list: [
+        'Location and accessibility',
+        'Zoning and permitted uses',
+        'Parcel size and configuration',
+        'Road access',
+        'Utilities and infrastructure',
+        'Development potential',
+        'Surrounding properties',
+        'Market demand',
+        'Potential development costs',
+      ]},
+    ]
+  },
+  'construction-design': {
+    title: 'Construction & Interior Design',
+    subtitle: 'Construction | Interior Design',
+    blocks: [
+      { heading: 'Construction', text: `Deliver commercial construction solutions from planning and pre-construction through project completion. Our approach can cover project coordination, construction execution, quality control, scheduling, and coordination with relevant professionals and contractors.` },
+      { heading: 'Interior Design', text: `Create functional and visually distinctive commercial interiors designed around the property's purpose and the client's brand. Solutions can include space planning, material selection, finishes, lighting concepts, furniture layouts, and overall interior coordination.` },
+      { heading: 'Project Types', list: [
+        'Restaurants', 'Retail spaces', 'Office properties', 'Commercial buildings',
+        'Mixed-use spaces', 'Investment properties', 'Renovation and improvement projects',
+      ]},
+      { heading: 'Our Process', list: [
+        'Initial consultation', 'Site and project assessment', 'Concept and planning',
+        'Budget development', 'Construction / implementation', 'Interior finishes',
+        'Quality review', 'Project completion',
+      ]},
+    ]
+  },
+  'commercial-investment': {
+    title: 'Commercial Properties',
+    subtitle: 'Investment Options',
+    blocks: [
+      { text: `Invest in or acquire commercial properties that can support business operations and income generation. Opportunities may include office buildings, retail properties, restaurants, service businesses, and other commercial assets.` },
+      { heading: 'Potential Opportunities', list: [
+        'Office buildings', 'Retail properties', 'Restaurant properties',
+        'Mixed-use commercial properties', 'Business-use buildings', 'Commercial redevelopment opportunities',
+      ]},
+      { heading: 'Investment Considerations', list: [
+        'Purchase price', 'Location', 'Tenant profile', 'Lease terms', 'Operating expenses',
+        'Existing or potential rental income', 'Property condition', 'Market demand', 'Future repositioning potential',
+      ]},
+    ]
+  },
+  'income-properties': {
+    title: 'Income Properties',
+    subtitle: 'Investment Options',
+    blocks: [
+      { text: `Income properties are real estate assets intended to generate recurring rental income. Opportunities may include apartment buildings, mixed-use properties, and other rental assets.` },
+      { heading: 'What We Evaluate', list: [
+        'Existing rental income', 'Occupancy', 'Rental rates', 'Operating expenses',
+        'Property condition', 'Location and surrounding market', 'Potential for improving operations or property value',
+      ]},
+      { heading: 'Investment Approach', text: `The objective is to identify properties where the underlying income profile and property fundamentals align with the investor's strategy and risk considerations.` },
+    ]
+  },
+  'multifamily': {
+    title: 'Multifamily Properties',
+    subtitle: 'Investment Options',
+    blocks: [
+      { text: `Explore multifamily properties such as apartment communities and other residential rental properties with multiple units. These properties can range from smaller apartment buildings to larger multifamily developments. HUD's multifamily programs cover rental properties with five or more units, including financing and programs related to construction, rehabilitation, refinancing, and acquisition.` },
+      { heading: 'Potential Opportunities', list: [
+        'Apartment buildings', 'Multifamily communities', 'Value-add properties',
+        'Existing rental communities', 'Multifamily development sites', 'Acquisition and repositioning opportunities',
+      ]},
+      { heading: 'What We Evaluate', list: [
+        'Number of units', 'Occupancy', 'Rental income', 'Operating expenses', 'Property condition',
+        'Local rental market', 'Renovation potential', 'Long-term investment objectives',
+      ]},
+    ]
+  },
+  'development': {
+    title: 'Development Opportunities',
+    subtitle: 'Investment Options',
+    blocks: [
+      { text: `Identify properties and land with potential for future development, redevelopment, expansion, or repositioning.` },
+      { heading: 'Potential Development Types', list: [
+        'Commercial developments', 'Multifamily developments', 'Mixed-use projects',
+        'Retail developments', 'Restaurant developments', 'Land subdivision opportunities', 'Redevelopment projects',
+      ]},
+      { heading: 'Development Evaluation', list: [
+        'Site location', 'Land size', 'Zoning', 'Access and infrastructure', 'Permitted uses',
+        'Market demand', 'Development costs', 'Construction considerations', 'Potential exit strategy',
+      ]},
+      { heading: 'Development Process', flow: 'Identify → Evaluate → Plan → Entitle → Develop → Build → Stabilize / Sell' },
+      { note: `Because zoning, permits, and development requirements are largely jurisdiction-specific, each project should be evaluated according to the applicable local requirements.` },
+    ]
+  },
+};
+
+function openAboutModal(key) {
+  const data = ABOUT_DETAILS[key];
+  if (!data) return;
+
+  document.getElementById('about-modal-title').textContent = data.title;
+  document.getElementById('about-modal-subtitle').textContent = data.subtitle || '';
+
+  const body = document.getElementById('about-modal-body');
+  body.innerHTML = data.blocks.map(b => {
+    if (b.flow) {
+      return `${b.heading ? `<h4 class="about-modal-heading">${b.heading}</h4>` : ''}<div class="about-modal-flow">${b.flow}</div>`;
+    }
+    if (b.list) {
+      return `${b.heading ? `<h4 class="about-modal-heading">${b.heading}</h4>` : ''}<ul class="about-modal-list">${b.list.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    }
+    if (b.note) {
+      return `<p class="about-modal-note">${b.note}</p>`;
+    }
+    return `${b.heading ? `<h4 class="about-modal-heading">${b.heading}</h4>` : ''}<p class="about-modal-text">${b.text}</p>`;
+  }).join('');
+
+  document.getElementById('about-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAboutModal() {
+  document.getElementById('about-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAboutModal();
+});
+
 // ── Page Initialization ───────────────────────────────────────────────────────
 // When the page loads, figure out which page we're on and run the right function
 
