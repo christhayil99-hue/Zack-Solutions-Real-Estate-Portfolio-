@@ -160,14 +160,12 @@ nav {
   margin-bottom: 16px;
 }
 
-.hero-title {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 62px;
-  font-weight: 900;
-  color: #ffffff;
-  line-height: 1.05;
-  margin-bottom: 16px;
-  letter-spacing: 1px;
+.hero-logo-img {
+  max-width: 420px;
+  width: 80%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
 }
 
 .hero-divider {
