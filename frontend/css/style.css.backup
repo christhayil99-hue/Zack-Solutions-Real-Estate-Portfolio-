@@ -235,25 +235,25 @@ nav {
 .btn:hover { opacity: 0.85; }
 
 .btn-dark {
-  background: #1a3a5c;
+  background: #192c76;
   color: #fff;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
 
 .btn-dark:hover {
-  background: #2e75b6;
+  background: #192c76;
 }
 
 .btn-outline {
   background: transparent;
-  border: 2px solid #1a3a5c;
-  color: #1a3a5c;
+  border: 2px solid #192c76;
+  color: #192c76;
   font-weight: 600;
 }
 
 .btn-outline:hover {
-  background: #1a3a5c;
+  background: #192c76;
   color: #ffffff;
 }
 
@@ -319,7 +319,7 @@ nav {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 6px;
-  color: #1a3a5c;
+  color: #192c76;
 }
 
 .card-address {
@@ -343,17 +343,17 @@ nav {
 }
 
 .badge-sale {
-  background: #1a3a5c;
+  background: #192c76;
   color: #ffffff;
-  border: 2px solid #1a3a5c;
+  border: 2px solid #192c76;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
 .badge-rent {
   background: #ffffff;
-  color: #1a3a5c;
-  border: 2px solid #1a3a5c;
+  color: #192c76;
+  border: 2px solid #192c76;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
