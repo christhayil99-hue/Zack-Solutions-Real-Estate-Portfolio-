@@ -235,8 +235,8 @@ nav {
 
 .categories-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -246,38 +246,67 @@ nav {
   color: #c9a84c;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.category-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.cat-card {
-  display: block;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.cat-card img {
+.cat-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 130px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-  filter: brightness(0.72);
+  aspect-ratio: 4 / 3;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(201, 168, 76, 0.5);
+  border-radius: 4px;
+  text-decoration: none;
+  margin-bottom: 14px;
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
-.cat-card:hover img {
-  transform: scale(1.06);
-  filter: brightness(0.9);
+.cat-placeholder:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #c9a84c;
+}
+
+.cat-placeholder-text {
+  font-family: 'Times New Roman', Times, serif;
+  color: #c9a84c;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.cat-desc {
+  font-family: 'Times New Roman', Times, serif;
+  color: #c8d8e8;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 14px;
+  min-height: 54px;
+}
+
+.cat-view-link {
+  display: block;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  color: #c9a84c;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-top: 1px solid rgba(201, 168, 76, 0.3);
+  padding-top: 10px;
+  transition: color 0.2s ease;
+}
+
+.cat-view-link:hover {
+  color: #ffffff;
 }
 
 .about-card {
@@ -298,29 +327,6 @@ nav {
 
 .about-card:hover img {
   transform: scale(1.05);
-}
-
-.cat-card-label {
-  background: rgba(13,33,64,0.88);
-  padding: 8px 6px;
-  text-align: center;
-}
-
-.cat-card-name {
-  font-family: 'Times New Roman', Times, serif;
-  color: #c9a84c;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin: 0 0 3px 0;
-}
-
-.cat-card-sub {
-  font-family: 'Times New Roman', Times, serif;
-  color: #c8d8e8;
-  font-size: 10px;
-  margin: 0;
-  line-height: 1.4;
 }
 
 /* ── Trust Bar ────────────────────────────────────── */
@@ -992,6 +998,10 @@ tr:last-child td { border-bottom: none; }
   .nav-links a { font-size: 11px; }
   .hero-title { font-size: 50px; }
   .categories-grid { gap: 24px; }
+}
+
+@media (max-width: 900px) {
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
