@@ -161,11 +161,12 @@ nav {
 }
 
 .hero-logo-img {
-  max-width: 260px;
-  width: 60%;
+  max-width: 340px;
+  width: 70%;
   height: auto;
   display: block;
   margin: 20px 0;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
 }
 
 .hero-divider {
