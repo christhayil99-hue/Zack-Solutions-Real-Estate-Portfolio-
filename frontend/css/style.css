@@ -141,7 +141,7 @@ nav {
 .hero {
   background:
     linear-gradient(to right, rgba(13,33,64,0.5) 0%, rgba(13,33,64,0.15) 55%, rgba(13,33,64,0) 100%),
-    url('../images/hero-nyc.png') center/cover no-repeat;
+    url('../images/hero-nyc-final.jpg') center/cover no-repeat;
   padding: 100px 80px;
   text-align: left;
   min-height: 460px;
