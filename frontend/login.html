@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" href="/images/favicon-32.png"/>
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Login — Zack Real Estate</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; } 
     body {
       min-height: 100vh;
       display: flex;
-      font-family: Arial, sans-serif;
+      font-family: 'Libre Baskerville', Georgia, serif;
     }
+
+    /* Form fields don't inherit the page font by default */
+    input, button { font-family: inherit; }
 
     /* ── Left panel: NYC skyline background ── */
     .login-left {

@@ -1469,3 +1469,7 @@ html, body {
   stroke-linejoin: round;
   margin-top: -2px;
 }
+
+/* ── Inner-page polish (Nov 2026) ── */
+/* Empty "no listings" message spans the whole grid instead of sitting in the first column */
+.empty-state { grid-column: 1 / -1; }

@@ -293,7 +293,7 @@ async function loadDetail() {
   }
 
   const p = result.data;
-  document.title = `${p.title} — ZSG Realty`; // update page tab title
+  document.title = `${p.title} — Zack Real Estate`; // update page tab title
 
   // Build the detail page HTML
   container.innerHTML = `
