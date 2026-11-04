@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600;700&display=swap');
 /* ═══════════════════════════════════════════════════
    ZACK REAL ESTATE — Main Stylesheet
-   Font: Times New Roman throughout
-   Theme: Navy blue (lighter), gold accents, white trust bar
 ═══════════════════════════════════════════════════ */
 
 /* ── Reset & Base ─────────────────────────────────── */
@@ -12,7 +11,7 @@
 }
 
 body {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #1a1a1a;
   background: #f0f4f8;
   line-height: 1.7;
@@ -67,7 +66,7 @@ nav {
 }
 
 .logo-z {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 22px;
   font-weight: 900;
   color: #192c76;
@@ -85,7 +84,7 @@ nav {
 }
 
 .nav-logo-main {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
@@ -93,7 +92,7 @@ nav {
 }
 
 .nav-logo-sub {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 9px;
   color: #c9a84c;
   letter-spacing: 2.5px;
@@ -106,7 +105,7 @@ nav {
 }
 
 .nav-links a {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 12px;
   font-weight: 600;
   color: #c8d8e8;
@@ -152,7 +151,7 @@ nav {
 .hero-content { max-width: 580px; }
 
 .hero-location {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   font-weight: 600;
   color: #c8d8e8;
@@ -177,7 +176,7 @@ nav {
 }
 
 .hero-sub {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 17px;
   color: #c8d8e8;
   margin-bottom: 36px;
@@ -195,7 +194,7 @@ nav {
   background: #192c76;
   color: #ffffff;
   border: 2px solid #ffffff;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -214,7 +213,7 @@ nav {
   background: #c9a84c;
   color: #192c76;
   border: 2px solid #c9a84c;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -230,7 +229,7 @@ nav {
 
 /* ── Property Categories ──────────────────────────── */
 .categories-section {
-  background: #171d51;
+  background: #14225a;
   padding: 48px 48px;
 }
 
@@ -257,7 +256,7 @@ nav {
 }
 
 .category-title {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #c9a84c;
   font-size: 14px;
   font-weight: 700;
@@ -286,7 +285,7 @@ nav {
 }
 
 .cat-desc {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #dbe6f5;
   font-size: 12.5px;
   line-height: 1.5;
@@ -298,7 +297,7 @@ nav {
 .cat-view-link {
   display: block;
   text-align: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #c9a84c;
   font-size: 12px;
   font-weight: 700;
@@ -372,7 +371,7 @@ nav {
 }
 
 .trust-title {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #192c76;
   font-size: 12px;
   font-weight: 700;
@@ -381,7 +380,7 @@ nav {
 }
 
 .trust-sub {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #555555;
   font-size: 12px;
   line-height: 1.5;
@@ -406,7 +405,7 @@ nav {
 }
 
 .footer-tagline p {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #c9a84c;
   font-size: 13px;
   letter-spacing: 4px;
@@ -424,7 +423,7 @@ nav {
 /* ── Listings Page ────────────────────────────────── */
 .section { padding: 40px 0; }
 .section-title {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 24px;
@@ -451,7 +450,7 @@ nav {
 }
 
 .filter-group label {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 12px;
   color: #666;
   font-weight: 600;
@@ -463,7 +462,7 @@ nav {
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 13px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   background: #fff;
   outline: none;
 }
@@ -508,7 +507,7 @@ nav {
 .card-body { padding: 16px; }
 
 .card-price {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 6px;
@@ -516,7 +515,7 @@ nav {
 }
 
 .card-address {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 14px;
   color: #444;
   margin-bottom: 12px;
@@ -559,7 +558,7 @@ nav {
 .card-view-link {
   display: inline-block;
   margin-top: 10px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   font-weight: 700;
   color: #c9a84c;
@@ -572,7 +571,7 @@ nav {
   background: none;
   border: none;
   color: #192c76;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -606,7 +605,7 @@ nav {
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
 }
 
@@ -617,7 +616,7 @@ nav {
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   cursor: pointer;
 }
@@ -642,7 +641,7 @@ nav {
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   cursor: pointer;
 }
@@ -665,7 +664,7 @@ nav {
   border: 2px dashed #ccc;
   border-radius: 12px;
   color: #888;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 15px;
   text-align: center;
   padding: 24px;
@@ -673,7 +672,7 @@ nav {
 
 /* ── Badges ───────────────────────────────────────── */
 .badge {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 11px;
   padding: 4px 10px;
   border-radius: 6px;
@@ -697,7 +696,7 @@ nav {
 }
 
 .tag {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 12px;
   color: #666;
   background: #f7f7f5;
@@ -709,7 +708,7 @@ nav {
 .btn {
   padding: 11px 22px;
   border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 14px;
   cursor: pointer;
   border: none;
@@ -770,7 +769,7 @@ nav {
 }
 
 .detail-price {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 6px;
@@ -778,7 +777,7 @@ nav {
 }
 
 .detail-address {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 15px;
   color: #666;
   margin-bottom: 24px;
@@ -799,14 +798,14 @@ nav {
 }
 
 .stat-label {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 11px;
   color: #888;
   margin-bottom: 4px;
 }
 
 .stat-value {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 18px;
   font-weight: 700;
   color: #192c76;
@@ -836,7 +835,7 @@ nav {
 }
 
 .inquiry-card h3 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 16px;
@@ -848,7 +847,7 @@ nav {
 
 .form-group label {
   display: block;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 13px;
   color: #666;
   margin-bottom: 6px;
@@ -861,7 +860,7 @@ nav {
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 14px;
   outline: none;
   transition: border-color 0.15s;
@@ -895,7 +894,7 @@ nav {
 .admin-sidebar li a {
   display: block;
   padding: 10px 24px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 14px;
   color: #666;
   transition: background 0.1s;
@@ -928,7 +927,7 @@ table {
 th {
   text-align: left;
   padding: 12px 16px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 12px;
   font-weight: 700;
   color: #666;
@@ -938,7 +937,7 @@ th {
 
 td {
   padding: 12px 16px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 14px;
   border-bottom: 1px solid #f0f0ee;
 }
@@ -949,7 +948,7 @@ tr:last-child td { border-bottom: none; }
 .alert {
   padding: 12px 16px;
   border-radius: 8px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 14px;
   margin-bottom: 16px;
 }
@@ -961,7 +960,7 @@ tr:last-child td { border-bottom: none; }
 .loading {
   text-align: center;
   padding: 60px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #888;
   font-size: 15px;
 }
@@ -982,7 +981,7 @@ tr:last-child td { border-bottom: none; }
 }
 
 .page-banner h1 {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #ffffff;
   font-size: 34px;
   font-weight: 700;
@@ -991,7 +990,7 @@ tr:last-child td { border-bottom: none; }
 }
 
 .page-banner p {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #c8d8e8;
   font-size: 16px;
 }
@@ -1147,7 +1146,7 @@ html, body {
 }
 
 .nav-logo-sub {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   font-size: 9px;
   color: #c9a84c;
   letter-spacing: 2.5px;
@@ -1206,7 +1205,7 @@ html, body {
 .about-modal-close:hover { color: #c9a84c; }
 
 #about-modal-title {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #fff;
   font-size: 24px;
   font-weight: 700;
@@ -1214,7 +1213,7 @@ html, body {
 }
 
 #about-modal-subtitle {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #c9a84c;
   font-size: 12px;
   letter-spacing: 1px;
@@ -1224,7 +1223,7 @@ html, body {
 .about-modal-content { padding: 28px 32px 32px 32px; }
 
 .about-modal-heading {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Libre Baskerville', Georgia, serif;
   color: #192c76;
   font-size: 15px;
   font-weight: 700;
@@ -1271,4 +1270,202 @@ html, body {
 
 @media (max-width: 640px) {
   .about-modal-header, .about-modal-content { padding-left: 20px; padding-right: 20px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   HOMEPAGE POLISH (Nov 2026)
+   Matches Mareen's mockup. This block sits at the END
+   of the file on purpose: later rules win, so these
+   override the older homepage styles above.
+═══════════════════════════════════════════════════ */
+
+/* ── Navigation: larger, more readable menu ───────── */
+.nav-links { gap: 44px; }
+.nav-links a {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+.nav-links a:hover,
+.nav-links a.active { color: #f0d462; border-bottom-color: #f0d462; }
+
+/* ── Hero: grows with the screen, keeps the skyline in view ── */
+.hero {
+  background:
+    linear-gradient(to right, rgba(13,33,64,0.55) 0%, rgba(13,33,64,0.2) 45%, rgba(13,33,64,0) 70%),
+    url('../images/hero-nyc-final.jpg') center 78% / cover no-repeat;
+  min-height: clamp(520px, 40vw, 820px);
+  padding: 60px clamp(24px, 6vw, 140px);
+}
+.hero-content { max-width: 640px; }
+
+.hero-location {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.hero-logo-img {
+  width: clamp(280px, 26vw, 470px);
+  max-width: 100%;
+  margin: 12px 0 18px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+}
+.hero-divider { background: #f0d462; }
+.hero-sub {
+  font-size: clamp(19px, 1.45vw, 26px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+}
+.btn-hero-dark,
+.btn-hero-gold {
+  font-size: 15px;
+  padding: 17px 36px;
+  letter-spacing: 1.5px;
+}
+.btn-hero-gold { background: #f0d462; border-color: #f0d462; }
+.btn-hero-gold:hover { background: #c9a84c; border-color: #c9a84c; }
+
+/* ── Category section: full width, bigger type ────── */
+.categories-section { padding: 44px clamp(20px, 3vw, 60px) 52px; }
+.categories-grid {
+  max-width: 1800px;
+  gap: 32px;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 equal columns */
+}
+/* Stack each column so the "View Properties" links line up at the bottom */
+.category-column { display: flex; flex-direction: column; }
+.category-column:not(:first-child)::before { left: -16px; }
+
+/* Title with gold lines on each side (replaces the typed "—" dashes) */
+.category-title {
+  font-size: clamp(13px, 0.92vw, 18px);
+  letter-spacing: 0.5px;
+  color: #f0d462;
+  white-space: nowrap;
+  gap: 12px;
+  min-height: 0;
+  margin-bottom: 16px;
+}
+.category-title::before,
+.category-title::after {
+  content: "";
+  flex: 1;
+  max-width: 50px;
+  height: 2px;
+  background: #f0d462;
+}
+
+.cat-placeholder {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 3px;
+}
+.cat-placeholder img { transition: transform 0.4s ease; }
+.cat-placeholder:hover img { transform: scale(1.04); }
+
+.cat-desc {
+  font-size: clamp(13px, 0.9vw, 16px);
+  color: #ffffff;
+  margin: 14px 0 16px;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+/* "View Properties" with a gold circled arrow */
+.cat-view-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-top: none;
+  padding-top: 0;
+  color: #ffffff;
+  font-size: clamp(13px, 0.95vw, 17px);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.cat-arrow {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #f0d462;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0d462;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.cat-arrow svg { width: 20px; height: 20px; }
+.cat-view-link:hover { color: #f0d462; }
+.cat-view-link:hover .cat-arrow { background: #f0d462; color: #14225a; }
+
+/* ── Trust bar: solid gold icons, larger text ─────── */
+.trust-bar { padding: 30px clamp(20px, 3vw, 60px); border-top: none; }
+.trust-grid { max-width: 1500px; flex-wrap: nowrap; }
+.trust-item {
+  flex: 1 1 0;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 clamp(12px, 1.6vw, 36px);
+  min-width: 0;
+}
+.trust-icon { width: 74px; height: 74px; background: #14225a; }
+.trust-svg { width: 38px; height: 38px; fill: #f0d462; }
+.trust-svg path { fill: #f0d462; }
+.trust-title {
+  font-size: clamp(13px, 0.88vw, 17px);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+.trust-sub {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: clamp(13px, 0.9vw, 16px);
+  color: #333333;
+  line-height: 1.45;
+}
+.trust-divider { height: 70px; background: #c9ced8; }
+
+/* ── Responsive versions of the above ─────────────── */
+@media (max-width: 1100px) {
+  .categories-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
+  .category-column:nth-child(3)::before { display: none; }
+  .category-title { font-size: 16px; }
+  .trust-item { justify-content: flex-start; }
+  .trust-grid { flex-wrap: wrap; row-gap: 24px; }
+  .trust-item { flex: 1 1 40%; }
+  .trust-divider { display: none; }
+}
+@media (max-width: 768px) {
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.5px; }
+  .hero { min-height: 0; padding: 56px 22px 64px; background-position: 60% 80%; }
+  .hero-sub br { display: none; }
+  .categories-grid { grid-template-columns: minmax(0, 1fr); }
+  .category-column::before { display: none; }
+  .trust-item { flex: 1 1 100%; max-width: 360px; }
+}
+@media (max-width: 480px) {
+  .btn-hero-dark, .btn-hero-gold { padding: 15px 24px; font-size: 14px; }
+  .trust-icon { width: 64px; height: 64px; }
+  .trust-svg { width: 30px; height: 30px; }
+}
+
+/* ── Admin link: same as the other menu items, with a small lock icon ── */
+.nav-admin { display: inline-flex; align-items: center; gap: 7px; }
+.nav-admin svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-top: -2px;
 }
