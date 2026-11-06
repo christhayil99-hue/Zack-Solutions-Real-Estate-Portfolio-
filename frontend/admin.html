@@ -217,7 +217,7 @@
 
   <script>
     // Redirect to login if not authenticated
-    if (localStorage.getItem('adminToken') !== 'zack-admin-verified') {
+    if (!localStorage.getItem('adminToken')) {
       window.location.replace('/login.html');
     }
   </script>

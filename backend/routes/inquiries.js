@@ -4,12 +4,13 @@
 const express = require('express');
 const router  = express.Router();
 const Inquiry = require('../models/Inquiry');
+const { requireAdmin } = require('./auth');
 
 // ─────────────────────────────────────────────
 // GET /api/inquiries
 // Returns ALL inquiries — for the admin dashboard
 // ─────────────────────────────────────────────
-router.get('/', async (req, res) => {
+router.get('/', requireAdmin, async (req, res) => {
   try {
     // .sort({ createdAt: -1 }) = newest first
     // .populate('propertyId') = also fetch the linked property's full data
@@ -40,7 +41,7 @@ router.post('/', async (req, res) => {
 // Updates the STATUS of an inquiry (new → contacted → closed)
 // Used by the admin dashboard
 // ─────────────────────────────────────────────
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAdmin, async (req, res) => {
   try {
     const inquiry = await Inquiry.findByIdAndUpdate(
       req.params.id,
@@ -62,7 +63,7 @@ router.put('/:id', async (req, res) => {
 // DELETE /api/inquiries/:id
 // Deletes a single inquiry — called from the admin dashboard
 // ─────────────────────────────────────────────
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     const inquiry = await Inquiry.findByIdAndDelete(req.params.id);
 

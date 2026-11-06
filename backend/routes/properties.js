@@ -1,6 +1,7 @@
 const express  = require('express');
 const router   = express.Router();
 const Property = require('../models/Property');
+const { requireAdmin } = require('./auth');
 
 // ── Hardcoded fallback data (used only if MongoDB is unavailable) ──────────
 const sampleProperties = [
@@ -86,7 +87,7 @@ router.get('/:id', async (req, res) => {
 
 // ── POST /api/properties ──────────────────────────────────────────────────────
 // Creates a new property — called from the admin "Add new listing" form
-router.post('/', async (req, res) => {
+router.post('/', requireAdmin, async (req, res) => {
   try {
     if (!isDbConnected()) {
       return res.status(503).json({ success: false, message: 'Database not connected. Cannot save new listings.' });
@@ -101,7 +102,7 @@ router.post('/', async (req, res) => {
 
 // ── PUT /api/properties/:id ───────────────────────────────────────────────────
 // Updates an existing property — called from the admin "Edit" button
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireAdmin, async (req, res) => {
   try {
     if (!isDbConnected()) {
       return res.status(503).json({ success: false, message: 'Database not connected.' });
@@ -125,7 +126,7 @@ router.put('/:id', async (req, res) => {
 
 // ── DELETE /api/properties/:id ────────────────────────────────────────────────
 // Deletes a property — called from the admin "Delete" button
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     if (!isDbConnected()) {
       return res.status(503).json({ success: false, message: 'Database not connected.' });

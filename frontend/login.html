@@ -318,7 +318,7 @@
 
   <script>
     // If already logged in, skip straight to admin
-    if (localStorage.getItem('adminToken') === 'zack-admin-verified') {
+    if (localStorage.getItem('adminToken')) {
       window.location.href = '/admin.html';
     }
 

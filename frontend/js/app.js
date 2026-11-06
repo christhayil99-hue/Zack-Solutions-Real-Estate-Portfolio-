@@ -5,26 +5,42 @@
 // ── API Helper ────────────────────────────────────────────────────────────────
 // Instead of writing fetch() over and over, this helper function makes it easier
 
+// Adds the admin login token (if there is one) to a request's headers
+function authHeaders(extra = {}) {
+  const token = localStorage.getItem('adminToken');
+  return token ? { ...extra, Authorization: `Bearer ${token}` } : extra;
+}
+
+// Reads the server's reply. If the admin login has expired (401),
+// clear it and send the admin back to the login page.
+function handleResponse(r) {
+  if (r.status === 401) {
+    localStorage.removeItem('adminToken');
+    window.location.replace('/login.html');
+  }
+  return r.json();
+}
+
 const API = {
   // GET: retrieve data from the server
-  get: (url) => fetch(url).then(r => r.json()),
+  get: (url) => fetch(url, { headers: authHeaders() }).then(handleResponse),
 
   // POST: send new data to the server
   post: (url, data) => fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(data)
-  }).then(r => r.json()),
+  }).then(handleResponse),
 
   // PUT: update existing data on the server
   put: (url, data) => fetch(url, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(data)
-  }).then(r => r.json()),
+  }).then(handleResponse),
 
   // DELETE: remove data from the server
-  delete: (url) => fetch(url, { method: 'DELETE' }).then(r => r.json()),
+  delete: (url) => fetch(url, { method: 'DELETE', headers: authHeaders() }).then(handleResponse),
 };
 
 // ── Utility Helpers ───────────────────────────────────────────────────────────
