@@ -1,93 +1,64 @@
-# ZSG Realty — Real Estate Portfolio Website
+# Zack Real Estate Inc. — Website
 
-A beginner-friendly real estate website built for Zack Solutions Group internship.
+The official website for **Zack Real Estate Inc.**: a property listings site with
+an admin dashboard for adding listings (with photos) and managing visitor inquiries.
 
 ---
 
-## Project Structure
+## What's inside
 
 ```
-zsg-realty/
-├── frontend/           ← Everything the visitor SEES
-│   ├── index.html      ← Homepage
-│   ├── listings.html   ← All properties page
-│   ├── detail.html     ← Single property page
-│   ├── contact.html    ← Contact form page
-│   ├── admin.html      ← Admin dashboard (manage listings)
-│   ├── css/
-│   │   └── style.css   ← All styles in one file
-│   └── js/
-│       └── app.js      ← All frontend logic in one file
+├── frontend/              ← Everything visitors see
+│   ├── index.html         ← Homepage
+│   ├── listings.html      ← All properties, with search filters
+│   ├── detail.html        ← One property, with photo gallery and inquiry form
+│   ├── about.html         ← About Us
+│   ├── contact.html       ← Contact form
+│   ├── login.html         ← Admin sign-in
+│   ├── admin.html         ← Admin dashboard (listings, photos, inquiries)
+│   ├── css/style.css      ← All styles
+│   ├── js/app.js          ← All page logic
+│   └── images/            ← Site images
 │
-├── backend/            ← The server (handles data & API)
-│   ├── server.js       ← Main server file — START HERE
-│   ├── config/
-│   │   └── db.js       ← Database connection
-│   ├── models/
-│   │   ├── Property.js ← What a property looks like in the DB
-│   │   └── Inquiry.js  ← What an inquiry looks like in the DB
-│   └── routes/
-│       ├── properties.js ← API routes for properties
-│       └── inquiries.js  ← API routes for inquiries
+├── backend/               ← The server
+│   ├── server.js          ← Starts the app
+│   ├── config/db.js       ← Connects to MongoDB
+│   ├── models/            ← Property, Photo and Inquiry data shapes
+│   └── routes/            ← API: properties, photos, inquiries, auth
 │
-├── docs/
-│   └── schema.md       ← Database schema explanation
-│
-├── package.json        ← Project dependencies
-└── README.md           ← This file
+└── package.json
 ```
 
----
+## Tech
 
-## How to Run This Project
+Node.js + Express, MongoDB Atlas (Mongoose), plain HTML/CSS/JavaScript.
+Hosted on Render; every push to `main` deploys automatically.
 
-### Step 1 — Install Node.js
-Download from https://nodejs.org (choose the LTS version)
+## Running it locally
 
-### Step 2 — Get a free MongoDB database
-1. Go to https://www.mongodb.com/atlas
-2. Sign up for free
-3. Create a cluster → click "Connect" → copy the connection string
-4. It looks like: `mongodb+srv://username:password@cluster.mongodb.net/`
+1. Install packages: `npm install`
+2. Create a `.env` file in the project root (never commit it):
+   ```
+   MONGO_URI=<your MongoDB connection string>
+   ADMIN_PASSWORD=<admin password>
+   PORT=3000
+   ```
+3. Start: `npm start`, then open http://localhost:3000
 
-### Step 3 — Set up the project
-Open your terminal (search "Terminal" on Mac or "Command Prompt" on Windows):
+On the live site, `MONGO_URI` and `ADMIN_PASSWORD` are set in Render → Environment.
 
-```bash
-# Go into the project folder
-cd zsg-realty
+## Managing listings
 
-# Install all dependencies
-npm install
+Sign in at `/login.html`, then use **Add new listing**:
 
-# Create a .env file for your secrets
-echo MONGO_URI=your_mongodb_connection_string_here > .env
-echo PORT=3000 >> .env
-```
+- Add up to 15 photos per listing. They are resized automatically and stored in
+  the database. The first photo is the cover photo.
+- Bedrooms and bathrooms are optional (leave blank for land or commercial properties).
+- Only listings with status **Active** appear on the public site. Sold/rented
+  listings stay visible to admins for editing.
 
-### Step 4 — Run the server
-```bash
-npm start
-```
+## Security notes
 
-Then open your browser and go to: **http://localhost:3000**
-
----
-
-## Tech Stack (Simple Explanation)
-
-| Part | Tool | What it does |
-|------|------|--------------|
-| Frontend | HTML, CSS, JS | What users see and click |
-| Backend | Node.js + Express | Server that handles requests |
-| Database | MongoDB | Stores property & inquiry data |
-| API | REST | How frontend talks to backend |
-
----
-
-## Key Concepts for NJIT IT Students
-
-- **API**: The backend exposes URLs (called endpoints) that the frontend fetches data from
-- **REST**: A pattern where GET = read, POST = create, PUT = update, DELETE = remove
-- **MongoDB**: Stores data as JSON-like documents (no rigid tables like SQL)
-- **Express**: A simple web framework for Node.js — handles routing & middleware
+- Admin pages and data require a signed login token that expires after 12 hours.
+- After 5 wrong passwords, sign-in is blocked for 15 minutes.
+- Passwords and database credentials live only in `.env` / Render, never in the code.

@@ -28,7 +28,17 @@ router.get('/', requireAdmin, async (req, res) => {
 // ─────────────────────────────────────────────
 router.post('/', async (req, res) => {
   try {
-    const inquiry = await Inquiry.create(req.body);
+    // Only accept the fields the form is supposed to send, with sensible length limits
+    const b = req.body || {};
+    const clip = (v, n) => (typeof v === 'string' ? v.trim().slice(0, n) : undefined);
+    const inquiry = await Inquiry.create({
+      propertyId:    b.propertyId,
+      propertyTitle: clip(b.propertyTitle, 200),
+      name:          clip(b.name, 100),
+      email:         clip(b.email, 200),
+      phone:         clip(b.phone, 40),
+      message:       clip(b.message, 3000),
+    });
 
     res.status(201).json({ success: true, data: inquiry });
   } catch (error) {

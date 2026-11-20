@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard — Zack Real Estate</title>
+  <title>Admin Dashboard — Zack Real Estate Inc.</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="icon" href="/favicon.ico" sizes="any"/>
   <link rel="icon" type="image/png" href="/images/favicon-32.png"/>
@@ -29,7 +29,7 @@
     <aside class="admin-sidebar">
       <ul>
         <li><a href="#listings"  onclick="showTab('listings')"  class="active">All listings</a></li>
-        <li><a href="#add"       onclick="showTab('add')">Add new listing</a></li>
+        <li><a href="#add"       onclick="startNewListing()">Add new listing</a></li>
         <li><a href="#inquiries" onclick="showTab('inquiries')">Inquiries</a></li>
         <li><a href="#" onclick="adminLogout()" style="color:#c0392b;margin-top:24px;display:block">Log out</a></li>
       </ul>
@@ -65,7 +65,7 @@
       <!-- ── Tab 2: Add New Listing ── -->
       <div id="tab-add" style="display:none">
         <div class="admin-header">
-          <h2 style="font-size:20px;font-weight:600">Add new listing</h2>
+          <h2 id="property-form-heading" style="font-size:20px;font-weight:600">Add new listing</h2>
         </div>
 
         <div style="background:#fff;border:1px solid #e5e5e3;border-radius:12px;padding:28px;max-width:700px">
@@ -77,10 +77,16 @@
             </div>
 
             <div class="form-group">
-              <label>Property Photos</label>
-              <input type="file" name="photos" accept="image/*" multiple disabled
-                style="padding:10px;border:1.5px dashed #ccc;border-radius:8px;background:#fafafa;color:#999;cursor:not-allowed;width:100%"/>
-              <p style="font-size:12px;color:#999;margin-top:6px">Photo uploads aren't enabled yet — listings will show a placeholder icon until this feature is turned on.</p>
+              <label for="photo-input">Property Photos</label>
+              <label for="photo-input" class="photo-drop">
+                <span class="photo-drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg></span>
+                <strong>Drag &amp; drop property photos here</strong>
+                <span>or <u>click to browse</u> your computer &middot; JPG or PNG, up to 15 photos</span>
+              </label>
+              <input type="file" id="photo-input" accept="image/jpeg,image/png,image/webp" multiple class="visually-hidden"/>
+              <p id="photo-status" class="photo-help"></p>
+              <div id="photo-previews" class="photo-previews"></div>
+              <p class="photo-help"><span id="photo-count"></span> The first photo is the cover photo shown on the Listings page.</p>
             </div>
 
             <p style="font-size:13px;font-weight:500;margin-bottom:10px;color:#666">Address</p>
@@ -127,7 +133,7 @@
 
             <div class="form-group">
               <label>Price *</label>
-                <input type="number" name="price" required placeholder="1250000"/>
+                <input type="number" name="price" required min="0" placeholder="1250000"/>
               </div>
               <div class="form-group">
                 <label>Type *</label>
@@ -148,12 +154,12 @@
 
             <div class="admin-form-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
               <div class="form-group">
-                <label>Bedrooms *</label>
-                <input type="number" name="bedrooms" required min="0" placeholder="3"/>
+                <label>Bedrooms</label>
+                <input type="number" name="bedrooms" min="0" placeholder="Optional"/>
               </div>
               <div class="form-group">
-                <label>Bathrooms *</label>
-                <input type="number" name="bathrooms" required min="0" placeholder="2"/>
+                <label>Bathrooms</label>
+                <input type="number" name="bathrooms" min="0" placeholder="Optional"/>
               </div>
               <div class="form-group">
                 <label>Sq Ft</label>
@@ -178,7 +184,8 @@
 
             <div style="display:flex;gap:10px;margin-top:8px">
               <button type="submit" class="btn btn-dark">Add listing</button>
-              <button type="reset"  class="btn btn-outline">Clear form</button>
+              <button type="button" class="btn btn-outline" onclick="resetPropertyForm()">Clear form</button>
+              <button type="button" id="cancel-edit-btn" class="btn btn-outline" style="display:none" onclick="resetPropertyForm(); showTab('listings')">Cancel editing</button>
             </div>
           </form>
         </div>
@@ -197,13 +204,14 @@
               <th>Email</th>
               <th>Phone</th>
               <th>Property</th>
+              <th>Message</th>
               <th>Status</th>
               <th>Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody id="admin-inquiries-body">
-            <tr><td colspan="7" class="loading">Loading...</td></tr>
+            <tr><td colspan="8" class="loading">Loading...</td></tr>
           </tbody>
         </table>
         </div>

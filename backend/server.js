@@ -16,6 +16,10 @@ connectDB();
 // ── Create the Express app ──────────────────────────────────────────────────
 const app = express();
 
+// Render sits in front of this app as a proxy; this lets us see each
+// visitor's real address (used by the wrong-password lockout)
+app.set('trust proxy', 1);
+
 // ── Middleware ──────────────────────────────────────────────────────────────
 // Middleware runs before every request — like a checkpoint
 
@@ -34,6 +38,10 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.use('/api/properties', require('./routes/properties'));
 app.use('/api/inquiries',  require('./routes/inquiries'));
 app.use('/api/auth',       require('./routes/auth'));
+app.use('/api/photos',     require('./routes/photos'));
+
+// Unknown /api/... links get a proper "not found" reply instead of the homepage
+app.use('/api', (req, res) => res.status(404).json({ success: false, message: 'Not found' }));
 
 // ── Catch-all Route ─────────────────────────────────────────────────────────
 // For any other URL, serve the homepage

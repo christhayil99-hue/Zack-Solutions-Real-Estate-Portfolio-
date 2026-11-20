@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us — Zack Real Estate</title>
+  <title>Contact Us — Zack Real Estate Inc.</title>
   <link rel="stylesheet" href="/css/style.css"/>
   <link rel="icon" href="/favicon.ico" sizes="any"/>
   <link rel="icon" type="image/png" href="/images/favicon-32.png"/>
@@ -75,7 +75,7 @@
 </main>
 
   <footer class="site-footer">
-    © 2026 Zack Real Estate · Zack Solutions LLC
+    © 2026 Zack Real Estate Inc. All rights reserved.
   </footer>
 
   <script src="js/app.js"></script>
@@ -92,20 +92,26 @@
         phone:   form.phone.value,
         message: form.message.value,
       };
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
       const result = await fetch('/api/inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).then(r => r.json());
+      }).then(r => r.json()).catch(() => ({ success: false }));
+      btn.disabled = false;
 
+      const msg = document.createElement('div');
       if (result.success) {
         form.reset();
-        const msg = document.createElement('div');
         msg.className = 'alert alert-success';
         msg.textContent = 'Message sent! We will get back to you soon.';
-        form.prepend(msg);
-        setTimeout(() => msg.remove(), 5000);
+      } else {
+        msg.className = 'alert alert-error';
+        msg.textContent = 'Sorry, your message could not be sent. Please try again in a moment.';
       }
+      form.prepend(msg);
+      setTimeout(() => msg.remove(), 6000);
     });
   </script>
 </body>

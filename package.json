@@ -1,7 +1,7 @@
 {
-  "name": "zsg-realty",
+  "name": "zack-real-estate",
   "version": "1.0.0",
-  "description": "Real estate portfolio for Zack Solutions Group",
+  "description": "Website for Zack Real Estate Inc.",
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
