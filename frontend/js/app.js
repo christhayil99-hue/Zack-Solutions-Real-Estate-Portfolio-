@@ -73,6 +73,19 @@ const CATEGORY_LABELS = {
   'development': 'Development Opportunities',
 };
 
+// Full state names, so visitors can search "New Jersey" as well as "NJ"
+const STATE_NAMES = {
+  AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado',
+  CT: 'Connecticut', DE: 'Delaware', DC: 'District of Columbia', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii',
+  ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky',
+  LA: 'Louisiana', ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota',
+  MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire',
+  NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York', NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio',
+  OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota',
+  TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington',
+  WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming',
+};
+
 // All photos for a listing (the first one is the cover photo)
 function listingPhotos(p) {
   if (p.images && p.images.length) return p.images;
@@ -221,7 +234,7 @@ async function loadListings() {
 
   if (location) {
     listings = listings.filter(p =>
-      `${p.address.street} ${p.address.city} ${p.address.state} ${p.address.zip}`
+      `${p.address.street} ${p.address.city} ${p.address.state} ${STATE_NAMES[p.address.state] || ''} ${p.address.zip}`
         .toLowerCase()
         .includes(location)
     );
