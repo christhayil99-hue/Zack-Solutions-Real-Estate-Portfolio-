@@ -741,7 +741,13 @@ async function editProperty(id) {
   field('title').value       = p.title || '';
   field('street').value      = p.address?.street || '';
   field('city').value        = p.address?.city || '';
-  field('state').value       = p.address?.state || '';
+  // State dropdown: if an older listing has a state the list doesn't know, add it so it isn't lost
+  const stateCode = (p.address?.state || '').toUpperCase();
+  const stateSelect = field('state');
+  if (stateCode && ![...stateSelect.options].some(o => o.value === stateCode)) {
+    stateSelect.add(new Option(stateCode, stateCode));
+  }
+  stateSelect.value = stateCode;
   field('zip').value         = p.address?.zip || '';
   field('category').value    = p.category || '';
   field('price').value       = p.price ?? '';
