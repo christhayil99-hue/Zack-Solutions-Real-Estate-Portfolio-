@@ -223,8 +223,12 @@ async function loadListings() {
     container.innerHTML = emptyStateHtml('unavailable');
     return;
   }
+  // Arriving from a homepage category card (only a category picked) and nothing listed
+  // there yet: show "Coming Soon" rather than "No listings match your search"
+  const onlyCategory = category && ![type, minPrice, maxPrice, bedrooms, location, bathrooms, minSqft].some(Boolean);
+
   if (result.data.length === 0) {
-    container.innerHTML = emptyStateHtml(filtersActive ? 'no-match' : 'coming-soon');
+    container.innerHTML = emptyStateHtml(filtersActive && !onlyCategory ? 'no-match' : 'coming-soon');
     return;
   }
 
@@ -374,15 +378,23 @@ async function loadDetail() {
   if (!container) return; // only run on detail page
 
   const id = getParam('id'); // get the ?id= from the URL
+  // No listing to show: hide the inquiry form too, so nobody asks about a property that isn't there
+  const hideInquiry = () => {
+    const card = document.querySelector('.inquiry-card');
+    if (card) card.style.display = 'none';
+  };
+
   if (!id) {
     container.innerHTML = '<p class="loading">No property selected.</p>';
+    hideInquiry();
     return;
   }
 
   const result = await API.get(`/api/properties/${id}`);
 
   if (!result.success) {
-    container.innerHTML = '<p class="loading">Property not found.</p>';
+    container.innerHTML = '<p class="loading">Property not found. It may have been sold or removed. <a href="listings.html">See current listings</a></p>';
+    hideInquiry();
     return;
   }
 
