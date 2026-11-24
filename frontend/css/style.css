@@ -1138,6 +1138,12 @@ tr:last-child td { border-bottom: none; }
 .table-scroll table {
   min-width: 640px;
 }
+/* Let the admin columns shrink to the screen, so wide tables scroll
+   sideways inside their box on phones instead of being cut off */
+.admin-layout > * { min-width: 0; }
+@media (max-width: 768px) {
+  .admin-main { padding: 20px 16px; }
+}
 
 /* ── Prevent Horizontal Overflow on Mobile ────────── */
 html, body {
