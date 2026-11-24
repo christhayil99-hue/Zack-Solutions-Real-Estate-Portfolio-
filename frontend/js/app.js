@@ -1033,3 +1033,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('filter-form')
     ?.addEventListener('submit', (e) => { e.preventDefault(); loadListings(); });
 });
+
+// Stop the mouse wheel from silently changing number fields (price, sq ft, ...).
+// In most browsers, scrolling the page while a number box is selected nudges its value,
+// e.g. 450000 becomes 449980. Un-selecting the box first makes the wheel scroll the page instead.
+document.addEventListener('wheel', () => {
+  const el = document.activeElement;
+  if (el && el.tagName === 'INPUT' && el.type === 'number') el.blur();
+}, { passive: true });
