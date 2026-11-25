@@ -8,7 +8,7 @@ an admin dashboard for adding listings (with photos) and managing visitor inquir
 ## What's inside
 
 ```
-├── frontend/              ← Everything visitors see
+├── public/                ← Everything visitors see (website files)
 │   ├── index.html         ← Homepage
 │   ├── listings.html      ← All properties, with search filters
 │   ├── detail.html        ← One property, with photo gallery and inquiry form

@@ -27,9 +27,10 @@ app.use(cors());                  // Allow frontend to talk to backend
 app.use(express.json());          // Allow server to read JSON from request body
 app.use(express.urlencoded({ extended: false })); // Allow HTML form submissions
 
-// Serve frontend files (HTML, CSS, JS) as static files
-// When someone visits "/", Express will look for files in the "frontend" folder
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Serve the website files (HTML, CSS, JS, images) from the "public" folder.
+// On Render and on your PC, Express does this. On Vercel, express.static is
+// ignored and Vercel serves the "public" folder itself (that's why it's named public).
+app.use(express.static(path.join(__dirname, '../public')));
 
 // ── API Routes ──────────────────────────────────────────────────────────────
 // Any request that starts with /api/properties → handled by properties.js
@@ -44,15 +45,20 @@ app.use('/api/photos',     require('./routes/photos'));
 app.use('/api', (req, res) => res.status(404).json({ success: false, message: 'Not found' }));
 
 // ── Catch-all Route ─────────────────────────────────────────────────────────
-// For any other URL, serve the homepage
-// This makes sure refreshing on any page still works
+// For any other (unknown) URL, send the visitor to the homepage
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.redirect('/');
 });
 
 // ── Start the Server ────────────────────────────────────────────────────────
-const PORT = process.env.PORT || 3000; // Use port from .env or default to 3000
+// On Render and on your PC, start listening on a port as usual.
+// On Vercel (which sets VERCEL=1), Vercel runs the app itself, so we don't listen.
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000; // Use port from .env or default to 3000
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+// Vercel loads the app from this export (through server.js in the main folder)
+module.exports = app;
